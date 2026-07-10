@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hybrid Club — Push Past Your Limits</title>
+<meta name="description" content="A Sydney-based community for hybrid athletes. Lifting, running, cycling and triathlon — trained together.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0C0C0B;
+    --panel:#111110;
+    --beige:#EFEDE4;
+    --grey:#8B8B84;
+    --hairline:#232321;
+    --max:1240px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{
+    background:var(--black);
+    color:var(--beige);
+    font-family:'Inter',sans-serif;
+    font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--beige);color:var(--black)}
+  a{color:inherit;text-decoration:none}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--beige);outline-offset:3px}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+  .mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);display:block;margin-bottom:22px}
+
+  /* ---------- NAV — logo centred like UVU ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(12,12,11,.85);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--hairline);
+  }
+  .nav-inner{
+    display:grid;grid-template-columns:1fr auto 1fr;
+    align-items:center;height:68px;
+  }
+  .nav-left{display:flex;gap:28px}
+  .nav-left a{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);transition:color .2s}
+  .nav-left a:hover{color:var(--beige)}
+  .monogram{
+    font-family:'Archivo Black',sans-serif;
+    font-size:22px;letter-spacing:-.02em;color:var(--beige);
+    line-height:1;
+  }
+  .nav-right{display:flex;justify-content:flex-end}
+  .btn{
+    display:inline-block;
+    background:var(--beige);color:var(--black);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    padding:12px 24px;border:1px solid var(--beige);
+    cursor:pointer;transition:background .2s,color .2s;
+  }
+  .btn:hover{background:transparent;color:var(--beige)}
+  .btn-ghost{background:transparent;color:var(--beige)}
+  .btn-ghost:hover{background:var(--beige);color:var(--black)}
+
+  /* ---------- HERO — full-bleed B&W photo ---------- */
+  .hero{
+    position:relative;height:100svh;min-height:640px;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;overflow:hidden;
+  }
+  .hero-img{
+    position:absolute;inset:0;
+    background:url('images/cooper.jpg') center 28% / cover no-repeat;
+    filter:grayscale(1) contrast(1.05) brightness(.55);
+  }
+  .hero::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to bottom, rgba(12,12,11,.35), rgba(12,12,11,.15) 45%, var(--black));
+  }
+  .hero-content{position:relative;z-index:2;padding:0 24px}
+  .hero h1{
+    font-family:'Inter',sans-serif;font-weight:900;text-transform:uppercase;
+    font-size:clamp(44px,9vw,128px);line-height:.95;letter-spacing:-.01em;
+    color:var(--beige);
+  }
+  .hero .tagline{
+    font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;
+    font-size:clamp(11px,1.6vw,17px);letter-spacing:.52em;
+    color:var(--grey);margin-top:22px;text-indent:.52em;
+  }
+  .hero-foot{
+    position:absolute;bottom:32px;left:0;right:0;z-index:2;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    padding:0 28px;color:var(--grey);
+  }
+  .scroll-cue{
+    position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;
+    color:var(--grey);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:120px 0;border-bottom:1px solid var(--hairline)}
+  h2{
+    font-family:'Inter',sans-serif;font-weight:900;text-transform:uppercase;
+    font-size:clamp(30px,4.5vw,54px);line-height:1;letter-spacing:-.01em;
+    margin-bottom:28px;
+  }
+  .two-col{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+  .lede{font-size:19px;line-height:1.65;max-width:58ch}
+  .body-copy{color:var(--grey);margin-top:20px;max-width:58ch}
+
+  /* Disciplines */
+  .disciplines{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--hairline);margin-top:72px;
+  }
+  .disc{
+    padding:36px 28px;border-right:1px solid var(--hairline);
+    transition:background .25s;
+  }
+  .disc:last-child{border-right:none}
+  .disc:hover{background:var(--panel)}
+  .disc .mono{color:var(--grey);display:block;margin-bottom:16px}
+  .disc h3{
+    font-family:'Inter',sans-serif;font-weight:900;text-transform:uppercase;
+    font-size:22px;letter-spacing:-.01em;margin-bottom:10px;
+  }
+  .disc p{font-size:13.5px;color:var(--grey);line-height:1.55}
+
+  /* ---------- FOUNDERS ---------- */
+  .founder{
+    display:grid;grid-template-columns:280px 1fr;gap:56px;align-items:center;
+    justify-items:center;
+  }
+  .founder > div:not(.f-photo){justify-self:stretch}
+  .founder + .founder{margin-top:110px}
+  .founder.flip .f-photo{order:2}
+  .f-photo{
+    position:relative;overflow:hidden;border:1px solid var(--hairline);
+  }
+  .f-photo img{
+    width:100%;aspect-ratio:4/5;object-fit:cover;
+    filter:grayscale(1) contrast(1.05);
+    transition:filter .5s ease;
+  }
+  .f-photo:hover img{filter:grayscale(0) contrast(1)}
+  .f-photo .mono{
+    position:absolute;bottom:0;left:0;right:0;
+    padding:12px 16px;color:var(--beige);
+    background:linear-gradient(to top, rgba(12,12,11,.85), transparent);
+  }
+  .f-name{
+    font-family:'Inter',sans-serif;font-weight:900;text-transform:uppercase;
+    font-size:clamp(26px,3.4vw,40px);line-height:1;letter-spacing:-.01em;
+  }
+  .f-stats{
+    border-top:1px solid var(--beige);
+    margin:28px 0 30px;
+  }
+  .f-stat{
+    display:grid;grid-template-columns:150px 1fr;gap:24px;
+    padding:13px 0;border-bottom:1px solid var(--hairline);
+    font-size:14px;
+  }
+  .f-stat .mono{color:var(--grey);padding-top:2px}
+  .f-bio{color:var(--grey);font-size:15px;line-height:1.7}
+  .f-bio em{color:var(--beige);font-style:normal}
+
+  /* ---------- SCHEDULE ---------- */
+  .timetable{border-top:1px solid var(--beige);margin-top:48px}
+  .row{
+    display:grid;grid-template-columns:90px 90px 1fr 220px 130px;
+    gap:24px;align-items:baseline;
+    padding:23px 0;border-bottom:1px solid var(--hairline);
+    transition:padding-left .2s;
+  }
+  .row:hover{padding-left:12px}
+  .row .day{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em}
+  .row .time{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--grey)}
+  .row .session{font-weight:600;font-size:15px}
+  .row .loc{font-size:13px;color:var(--grey)}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    border:1px solid var(--hairline);padding:4px 10px;color:var(--grey);justify-self:end;
+  }
+  .tag.hl{border-color:var(--beige);color:var(--beige)}
+  .schedule-note{margin-top:28px;color:var(--grey);font-size:13px}
+
+  /* ---------- COUNTDOWN ---------- */
+  .countdown{
+    display:flex;justify-content:center;gap:0;
+    border:1px solid var(--hairline);
+    max-width:760px;margin:0 auto;
+  }
+  .cd-unit{
+    flex:1;padding:36px 12px;
+    border-right:1px solid var(--hairline);
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .cd-unit:last-child{border-right:none}
+  .cd-num{
+    font-family:'Inter',sans-serif;font-weight:900;
+    font-size:clamp(40px,7vw,72px);line-height:1;letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .cd-unit .mono{color:var(--grey)}
+  .event-details{
+    display:flex;justify-content:center;gap:40px;flex-wrap:wrap;
+    margin-top:40px;color:var(--beige);
+  }
+
+  /* ---------- MEMBERSHIP ---------- */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--hairline);margin-top:48px}
+  .tier{
+    padding:42px 32px;border-right:1px solid var(--hairline);
+    display:flex;flex-direction:column;
+  }
+  .tier:last-child{border-right:none}
+  .tier.featured{background:var(--beige);color:var(--black)}
+  .tier.solo{
+    max-width:460px;margin:48px auto 0;
+    border:1px solid var(--hairline);
+    text-align:left;
+  }
+
+  .tier > .mono{display:block;margin-bottom:26px;color:var(--grey)}
+  .tier.featured > .mono{color:#6B6A61}
+  .tier-price{font-family:'Inter',sans-serif;font-weight:900;font-size:42px;line-height:1;margin-bottom:6px}
+  .tier-price span{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:400;letter-spacing:.08em;color:var(--grey)}
+  .tier.featured .tier-price span{color:#6B6A61}
+  .tier ul{list-style:none;margin:30px 0 38px;flex:1}
+  .tier li{font-size:14px;color:var(--grey);padding:10px 0;border-bottom:1px solid var(--hairline)}
+  .tier.featured li{color:#4A4A43;border-color:#D9D6C9}
+  .tier .btn{text-align:center}
+  .tier.featured .btn{background:var(--black);border-color:var(--black);color:var(--beige)}
+  .tier.featured .btn:hover{background:transparent;color:var(--black)}
+
+  /* ---------- JOIN ---------- */
+  .join-grid{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:end}
+  .join-form{display:flex;margin-top:8px}
+  .join-form input{
+    flex:1;font-family:'IBM Plex Mono',monospace;font-size:13px;
+    background:transparent;border:1px solid var(--beige);border-right:none;
+    padding:14px 18px;color:var(--beige);
+  }
+  .join-form input::placeholder{color:var(--grey)}
+  .form-note{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--grey);margin-top:14px;min-height:16px}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:56px 0 40px;text-align:center}
+  .foot-mark{font-family:'Archivo Black',sans-serif;font-size:30px;margin-bottom:8px}
+  .foot-tag{font-family:'Inter',sans-serif;font-weight:700;font-size:9px;letter-spacing:.5em;text-transform:uppercase;color:var(--grey);text-indent:.5em;margin-bottom:32px}
+  .foot-links{display:flex;justify-content:center;gap:32px;color:var(--grey)}
+  .foot-links a:hover{color:var(--beige)}
+  .foot-copy{margin-top:32px;color:#4C4C47}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:900px){
+    .nav-left{display:none}
+    .nav-inner{grid-template-columns:auto 1fr}
+    .nav-right{justify-self:end}
+    .two-col,.join-grid,.founder{grid-template-columns:1fr;gap:36px}
+    .founder.flip .f-photo{order:0}
+    .f-photo{max-width:280px;margin:0 auto}
+    .disciplines{grid-template-columns:1fr 1fr}
+    .disc:nth-child(2n){border-right:none}
+    .disc:nth-child(-n+2){border-bottom:1px solid var(--hairline)}
+    .tiers{grid-template-columns:1fr}
+    .tier{border-right:none;border-bottom:1px solid var(--hairline)}
+    .tier:last-child{border-bottom:none}
+    .row{grid-template-columns:70px 1fr 100px;gap:14px}
+    .row .time,.row .loc{display:none}
+    section{padding:80px 0}
+    .hero-foot{display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="nav-left">
+      <a href="#about">About</a>
+      <a href="#founders">Founders</a>
+      <a href="#schedule">First Event</a>
+      <a href="#membership">Membership</a>
+    </div>
+    <a href="#" class="monogram" aria-label="Hybrid Club home">HC</a>
+    <div class="nav-right">
+      <a href="#join" class="btn">Join</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-img" role="img" aria-label="Hybrid Club athlete finishing a race"></div>
+  <div class="hero-content">
+    <h1>Hybrid Club</h1>
+    <p class="tagline">Push Past Your Limits</p>
+  </div>
+  <div class="hero-foot">
+    <span class="mono">Est. Sydney — 2026</span>
+    <span class="mono">Lift · Run · Ride · Swim</span>
+  </div>
+  <span class="scroll-cue">Scroll</span>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <span class="eyebrow">The Club</span>
+        <h2>Every discipline.<br>One community.</h2>
+      </div>
+      <div>
+        <p class="lede">Most clubs make you pick a lane. Lifters lift, runners run, cyclists ride — and the people training across all of it end up training alone. Hybrid Club exists to change that.</p>
+        <p class="body-copy">We're a Sydney-based community for athletes who train across weightlifting, running, cycling, swimming and triathlon. Whether you're chasing a first parkrun, a bigger squat, or an Ironman finish line, you train alongside people who get it. Every session has options for every level — the standard is showing up, not keeping up.</p>
+      </div>
+    </div>
+    <div class="disciplines">
+      <div class="disc">
+        <span class="mono">01</span>
+        <h3>Lift</h3>
+        <p>Structured strength sessions built around the compound lifts. Muscle that performs, not just poses.</p>
+      </div>
+      <div class="disc">
+        <span class="mono">02</span>
+        <h3>Run</h3>
+        <p>Track intervals, tempo work and long runs. Every pace group, nobody dropped.</p>
+      </div>
+      <div class="disc">
+        <span class="mono">03</span>
+        <h3>Ride</h3>
+        <p>Weekend bunch rides with regroups. Coffee mandatory, watts optional.</p>
+      </div>
+      <div class="disc">
+        <span class="mono">04</span>
+        <h3>Swim &amp; Tri</h3>
+        <p>Squad swims, open water and triathlon prep — from first splash to race day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="founders">
+  <div class="wrap">
+    <span class="eyebrow">Founders</span>
+    <h2 style="margin-bottom:72px">The people behind it.</h2>
+
+    <div class="founder">
+      <div class="f-photo">
+        <img src="images/cooper.jpg" alt="Cooper Smith finishing Ironman 70.3 Western Sydney">
+        <span class="mono">Ironman 70.3 Western Sydney — 04:51</span>
+      </div>
+      <div>
+        <span class="eyebrow">Co-Founder</span>
+        <p class="f-name">Cooper Smith</p>
+        <div class="f-stats">
+          <div class="f-stat"><span class="mono">Age</span><span>21</span></div>
+          <div class="f-stat"><span class="mono">Achievement</span><span>Sub-5 Ironman 70.3</span></div>
+          <div class="f-stat"><span class="mono">Day job</span><span>Asset Finance Broker</span></div>
+          <div class="f-stat"><span class="mono">Disciplines</span><span>Triathlon · Strength · Hybrid</span></div>
+        </div>
+        <p class="f-bio">I'm from the Hills area in Sydney. I first found my passion in the gym, and over the years it's transformed into hybrid and triathlon training. I'm passionate about getting better in every discipline — swimming, cycling and running. <em>The main reason we created this club is to connect young, like-minded people and bring them together — not just to train, but to build friendships.</em> From personal experience, I know how isolating it is to only ever train by yourself.</p>
+      </div>
+    </div>
+
+    <div class="founder">
+      <div class="f-photo">
+        <img src="images/erica.jpg" alt="Erica Rose racing her half marathon">
+        <span class="mono">Half Marathon — Sydney</span>
+      </div>
+      <div>
+        <span class="eyebrow">Co-Founder</span>
+        <p class="f-name">Erica Rose</p>
+        <div class="f-stats">
+          <div class="f-stat"><span class="mono">Age</span><span>21</span></div>
+          <div class="f-stat"><span class="mono">Achievement</span><span>First half marathon, alongside a full-time study load</span></div>
+          <div class="f-stat"><span class="mono">Day job</span><span>OT Nurse</span></div>
+          <div class="f-stat"><span class="mono">Disciplines</span><span>Running · Strength · Pilates</span></div>
+        </div>
+        <p class="f-bio">I'm from the Hills in Sydney. I've found my love of fitness over the years — whether that's running, lifting weights, attempting a crazy Pilates move or simply cooking a high-protein meal. Fitness has changed my life for the better: the way I look at life and how I can improve, to become the best version of myself. <em>As a nurse I know first-hand how important living a healthy life is</em> — from two litres of water a day to eight hours of sleep. Hybrid Club is a place where I hope we can share a similar journey, and if not, help each other along the way. Can't wait to see you all out there. xxx</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow">First event</span>
+    <h2>It starts here.</h2>
+    <p class="body-copy" style="margin:0 auto 56px">Our first ever club session. All disciplines, all levels, everyone welcome.</p>
+    <div class="countdown" id="countdown">
+      <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="mono">Days</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="mono">Hours</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="mono">Mins</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="mono">Secs</span></div>
+    </div>
+    <div class="event-details">
+      <span class="mono">Sunday 19 July 2026</span>
+      <span class="mono">07:00 AM</span>
+      <span class="mono">Location — announced to the list</span>
+    </div>
+    <a href="#join" class="btn" style="margin-top:48px">Be there</a>
+  </div>
+</section>
+
+<section id="membership">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow">Membership</span>
+    <h2>Free to join.</h2>
+    <p class="body-copy" style="margin:0 auto">No fees, no lock-ins. Just show up.</p>
+    <div class="tier solo">
+      <span class="mono">Community</span>
+      <div class="tier-price">Free</div>
+      <span class="mono">No commitment</span>
+      <ul>
+        <li>All club sessions &amp; events</li>
+        <li>Members' group chat</li>
+        <li>Train across every discipline</li>
+        <li>Social events &amp; race-day crew</li>
+      </ul>
+      <a href="#join" class="btn">Join the club</a>
+    </div>
+  </div>
+</section>
+
+<section id="join" style="border-bottom:none">
+  <div class="wrap">
+    <div class="join-grid">
+      <div>
+        <span class="eyebrow">Join the club</span>
+        <h2>First session's<br>on us.</h2>
+        <p class="body-copy">Drop your email and we'll send you the details for our first event — Sunday 19 July, 7am. Come along free. If it's your kind of training, you'll know by the end of it.</p>
+      </div>
+      <div>
+        <div class="join-form">
+          <input type="email" id="email" placeholder="your@email.com" aria-label="Email address">
+          <button class="btn" onclick="joinClub()">Send it</button>
+        </div>
+        <p class="form-note" id="formNote"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-mark">HC</div>
+    <div class="foot-tag">Push Past Your Limits</div>
+    <div class="foot-links">
+      <a href="https://instagram.com/YOUR-HANDLE-HERE" class="mono" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://facebook.com/YOUR-PAGE-HERE" class="mono" target="_blank" rel="noopener">Facebook</a>
+      <a href="#join" class="mono">Join</a>
+    </div>
+    <p class="foot-copy mono">© 2026 Hybrid Club — Sydney</p>
+  </div>
+</footer>
+
+<script>
+  // Hook this up to a form service (Formspree, Mailchimp, ConvertKit) before launch.
+  // Replace the body of joinClub() with a fetch() to your endpoint.
+  function joinClub(){
+    const email = document.getElementById('email').value.trim();
+    const note = document.getElementById('formNote');
+    if(!email || !email.includes('@')){
+      note.textContent = '— Enter a valid email to get the schedule.';
+      return;
+    }
+    note.textContent = '— You\'re on the list. First event details coming your way.';
+    document.getElementById('email').value = '';
+  }
+  document.getElementById('email').addEventListener('keydown', e => {
+    if(e.key === 'Enter') joinClub();
+  });
+
+  // Countdown to first event — 7:00 AM AEST, Sunday 19 July 2026
+  const eventDate = new Date('2026-07-19T07:00:00+10:00').getTime();
+  function tick(){
+    const diff = eventDate - Date.now();
+    const d = document.getElementById('cd-d'), h = document.getElementById('cd-h'),
+          m = document.getElementById('cd-m'), s = document.getElementById('cd-s');
+    if(!d) return;
+    if(diff <= 0){
+      d.textContent = '00'; h.textContent = '00'; m.textContent = '00'; s.textContent = '00';
+      return;
+    }
+    d.textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
+    h.textContent = String(Math.floor(diff/3600000)%24).padStart(2,'0');
+    m.textContent = String(Math.floor(diff/60000)%60).padStart(2,'0');
+    s.textContent = String(Math.floor(diff/1000)%60).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
