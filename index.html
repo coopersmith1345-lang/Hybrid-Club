@@ -75,15 +75,6 @@
     display:flex;align-items:center;justify-content:center;
     text-align:center;overflow:hidden;
   }
-  .hero-img{
-    position:absolute;inset:0;
-    background:url('images/cooper.jpg') center 28% / cover no-repeat;
-    filter:grayscale(1) contrast(1.05) brightness(.55);
-  }
-  .hero::after{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(to bottom, rgba(12,12,11,.35), rgba(12,12,11,.15) 45%, var(--black));
-  }
   .hero-content{position:relative;z-index:2;padding:0 24px}
   .hero h1{
     font-family:'Inter',sans-serif;font-weight:900;text-transform:uppercase;
@@ -302,7 +293,6 @@
 </nav>
 
 <header class="hero">
-  <div class="hero-img" role="img" aria-label="Hybrid Club athlete finishing a race"></div>
   <div class="hero-content">
     <h1>Hybrid Club</h1>
     <p class="tagline">Push Past Your Limits</p>
