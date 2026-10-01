@@ -186,6 +186,52 @@
   .tag.hl{border-color:var(--beige);color:var(--beige)}
   .schedule-note{margin-top:28px;color:var(--grey);font-size:13px}
 
+  /* ---------- SUNDAY SESSION ---------- */
+  .meet{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--hairline);margin-top:56px;text-align:left}
+  .meet-item{padding:28px;border-right:1px solid var(--hairline)}
+  .meet-item:last-child{border-right:none}
+  .meet-item .mono{color:var(--grey);display:block;margin-bottom:12px}
+  .meet-item p{font-weight:600;font-size:17px;line-height:1.4}
+  .meet-item a{border-bottom:1px solid var(--grey);transition:border-color .2s}
+  .meet-item a:hover{border-color:var(--beige)}
+  .route{margin-top:64px;text-align:left}
+  .route-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:18px}
+  .route-head .mono{color:var(--grey)}
+  .route-head a.mono{color:var(--beige);border-bottom:1px solid var(--grey)}
+  .route-map{border:1px solid var(--hairline);background:var(--panel);min-height:200px}
+  .route-map iframe{display:block;width:100%!important;border:0}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:56px;
+  }
+  .gallery figure{overflow:hidden;border:1px solid var(--hairline);background:var(--panel)}
+  .gallery figure:first-child{grid-column:1/-1}
+  .gallery figure:first-child img{aspect-ratio:auto;height:auto}
+  .gallery img{
+    width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;
+    filter:grayscale(1) contrast(1.05);transition:filter .5s ease,transform .6s ease;
+  }
+  .gallery figure:hover img{filter:grayscale(0) contrast(1);transform:scale(1.03)}
+
+  /* ---------- PARTNERS ---------- */
+  .partners{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--hairline);margin-top:56px}
+  .partner{padding:44px 36px;border-right:1px solid var(--hairline);display:flex;flex-direction:column;transition:background .25s}
+  .partner:last-child{border-right:none}
+  .partner:hover{background:var(--panel)}
+  .partner > .mono{color:var(--grey);display:block;margin-bottom:28px}
+  .partner-mark{height:96px;display:flex;align-items:center;margin-bottom:26px}
+  .partner-mark img{max-height:100%;width:auto;max-width:240px}
+  .partner-mark img.lskd{height:52px}
+  .partner p{color:var(--grey);font-size:15px;line-height:1.65;flex:1}
+  .partner .btn{align-self:flex-start;margin-top:30px}
+  .promo{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    border:1px dashed var(--beige);padding:16px 20px;margin-top:26px;
+  }
+  .promo .mono{color:var(--grey)}
+  .promo strong{font-family:'IBM Plex Mono',monospace;font-size:16px;letter-spacing:.12em;font-weight:500}
+
   /* ---------- COUNTDOWN ---------- */
   .countdown{
     display:flex;justify-content:center;gap:0;
@@ -266,6 +312,13 @@
     .disc:nth-child(2n){border-right:none}
     .disc:nth-child(-n+2){border-bottom:1px solid var(--hairline)}
     .tiers{grid-template-columns:1fr}
+    .meet{grid-template-columns:1fr}
+    .meet-item{border-right:none;border-bottom:1px solid var(--hairline)}
+    .meet-item:last-child{border-bottom:none}
+    .gallery{grid-template-columns:1fr 1fr}
+    .partners{grid-template-columns:1fr}
+    .partner{border-right:none;border-bottom:1px solid var(--hairline)}
+    .partner:last-child{border-bottom:none}
     .tier{border-right:none;border-bottom:1px solid var(--hairline)}
     .tier:last-child{border-bottom:none}
     .row{grid-template-columns:70px 1fr 100px;gap:14px}
@@ -282,8 +335,10 @@
     <div class="nav-left">
       <a href="#about">About</a>
       <a href="#founders">Founders</a>
-      <a href="#schedule">Coming Soon</a>
+      <a href="#schedule">Sundays</a>
+      <a href="#gallery">Gallery</a>
       <a href="#membership">Membership</a>
+      <a href="#partners">Partners</a>
     </div>
     <a href="#" class="monogram" aria-label="Hybrid Club home">HC</a>
     <div class="nav-right">
@@ -386,17 +441,57 @@
 
 <section id="schedule">
   <div class="wrap" style="text-align:center">
-    <span class="eyebrow">Season 01</span>
-    <h2>Coming soon.</h2>
-    <p class="lede" style="margin:0 auto;max-width:52ch">Something is building in Sydney. Group sessions across every discipline. A community that trains together and pushes each other past their limits.</p>
-    <p class="body-copy" style="margin:24px auto 0;max-width:52ch">First meetup announced to the list. Limited to those who are on it.</p>
-    <div class="event-details" style="margin-top:48px">
-      <span class="mono">Lift</span>
-      <span class="mono">Run</span>
-      <span class="mono">Ride</span>
-      <span class="mono">Swim</span>
+    <span class="eyebrow">Every Sunday</span>
+    <h2>Sunday 7AM run.</h2>
+    <p class="lede" style="margin:0 auto;max-width:52ch">Our first event is done — and we're keeping it going. Every Sunday morning we meet, run together and grab a coffee after. All paces welcome, nobody gets dropped.</p>
+    <div class="meet">
+      <div class="meet-item">
+        <span class="mono">When</span>
+        <p>Every Sunday<br>7:00am</p>
+      </div>
+      <div class="meet-item">
+        <span class="mono">Where</span>
+        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Good+Graces+40+Solent+Circuit+Norwest+NSW" target="_blank" rel="noopener">Good Graces, Norwest</a><br><span style="color:var(--grey);font-weight:400;font-size:14px">40 Solent Circuit, Norwest</span></p>
+      </div>
+      <div class="meet-item">
+        <span class="mono">Cost</span>
+        <p>Free<br><span style="color:var(--grey);font-weight:400;font-size:14px">Just show up</span></p>
+      </div>
     </div>
-    <a href="#join" class="btn" style="margin-top:48px">Get on the list</a>
+    <div class="route">
+      <div class="route-head">
+        <span class="mono">The route</span>
+        <a class="mono" href="https://www.strava.com/routes/3537313520192833334" target="_blank" rel="noopener">Open in Strava →</a>
+      </div>
+      <div class="route-map">
+        <div class="strava-embed-placeholder" data-embed-type="route" data-embed-id="3537313520192833334" data-style="standard" data-from-embed="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <span class="eyebrow">Event 01 — Recap</span>
+        <h2>Where it<br>started.</h2>
+      </div>
+      <div>
+        <p class="lede">Our first ever Hybrid Club session. New faces, early start, good coffee — thank you to everyone who came down and made it happen.</p>
+        <p class="body-copy">See you Sunday for the next one.</p>
+      </div>
+    </div>
+    <!-- Event photos: add files to images/ named event-1.jpg, event-2.jpg ... Missing ones are hidden automatically. -->
+    <div class="gallery" id="eventGallery">
+      <figure><img src="images/event-1.jpg" alt="The Hybrid Club group outside Good Graces, Norwest, at the first event"></figure>
+      <figure><img src="images/event-2.jpg" alt="Hybrid Club first event"></figure>
+      <figure><img src="images/event-3.jpg" alt="Hybrid Club first event"></figure>
+      <figure><img src="images/event-4.jpg" alt="Hybrid Club first event"></figure>
+      <figure><img src="images/event-5.jpg" alt="Hybrid Club first event"></figure>
+      <figure><img src="images/event-6.jpg" alt="Hybrid Club first event"></figure>
+      <figure><img src="images/event-7.jpg" alt="Hybrid Club first event"></figure>
+    </div>
   </div>
 </section>
 
@@ -414,8 +509,41 @@
         <li>Members' group chat</li>
         <li>Train across every discipline</li>
         <li>Social events &amp; race-day crew</li>
+        <li>15% off LSKD gear</li>
       </ul>
       <a href="#join" class="btn">Join the club</a>
+    </div>
+  </div>
+</section>
+
+<section id="partners">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <span class="eyebrow">Partners</span>
+        <h2>Brands we<br>train with.</h2>
+      </div>
+      <div>
+        <p class="lede">Hybrid Club runs on community — and the brands backing it. These are the partners who help us keep every session free.</p>
+      </div>
+    </div>
+    <div class="partners">
+      <div class="partner">
+        <span class="mono">Brand Partner</span>
+        <div class="partner-mark"><img src="images/lskd-logo.png" alt="LSKD" class="lskd" width="299" height="82"></div>
+        <p>Our official brand partner. LSKD makes training and lifestyle gear built for people who move — and every Hybrid Club member gets 15% off.</p>
+        <div class="promo">
+          <span class="mono">Member code — 15% off</span>
+          <strong>HYBRIDCLUB15-RC</strong>
+        </div>
+        <a href="https://www.lskd.co/?ref=kgyzulpd&amp;utm_campaign=21098117&amp;utm_medium=influencer&amp;utm_source=collaborations&amp;utm_term=HYBRIDCLUB15-RC" class="btn" target="_blank" rel="noopener">Shop LSKD</a>
+      </div>
+      <div class="partner">
+        <span class="mono">Meeting Spot</span>
+        <div class="partner-mark"><img src="images/good-graces-logo.png" alt="Good Graces" width="695" height="303"></div>
+        <p>Home base for our Sunday 7am run. We meet out the front of Good Graces in Norwest, run the route together, then head back in for post-run coffee.</p>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Good+Graces+40+Solent+Circuit+Norwest+NSW" class="btn btn-ghost" target="_blank" rel="noopener">40 Solent Circuit, Norwest</a>
+      </div>
     </div>
   </div>
 </section>
@@ -425,8 +553,8 @@
     <div class="join-grid">
       <div>
         <span class="eyebrow">Join the club</span>
-        <h2>Be first<br>in.</h2>
-        <p class="body-copy">Drop your email and you'll be the first to know when Season 01 launches — first access to the first session, before it goes anywhere else.</p>
+        <h2>Stay in<br>the loop.</h2>
+        <p class="body-copy">Drop your email for route changes, new sessions and club events — or just turn up Sunday at 7am.</p>
       </div>
       <div>
         <div class="join-form">
@@ -452,7 +580,27 @@
   </div>
 </footer>
 
+<script src="https://strava-embeds.com/embed.js"></script>
 <script>
+  // Hide event photos that haven't been uploaded yet; hide the section if none exist
+  (function(){
+    const gallery = document.getElementById('eventGallery');
+    const section = document.getElementById('gallery');
+    const navLink = document.querySelector('.nav-left a[href="#gallery"]');
+    const imgs = [...gallery.querySelectorAll('img')];
+    let pending = imgs.length, loaded = 0;
+    const done = () => {
+      if(--pending > 0) return;
+      if(!loaded){ section.style.display = 'none'; if(navLink) navLink.style.display = 'none'; }
+    };
+    imgs.forEach(img => {
+      const ok = () => { loaded++; done(); };
+      const fail = () => { img.closest('figure').remove(); done(); };
+      if(img.complete){ img.naturalWidth ? ok() : fail(); }
+      else{ img.addEventListener('load', ok, {once:true}); img.addEventListener('error', fail, {once:true}); }
+    });
+  })();
+
   // Emails are captured via Formspree
   async function joinClub(){
     const email = document.getElementById('email').value.trim();
@@ -466,7 +614,7 @@
       const res = await fetch('https://formspree.io/f/xbdnjdpe', {
         method:'POST',
         headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({email:email, source:'Hybrid Club website — first event list'})
+        body:JSON.stringify({email:email, source:'Hybrid Club website — mailing list'})
       });
       if(res.ok){
         note.textContent = '— You\'re in. You\'ll hear from us first.';
