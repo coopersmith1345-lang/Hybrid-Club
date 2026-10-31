@@ -8,405 +8,383 @@
 <meta property="og:title" content="Hybrid Club — Push Past Your Limits">
 <meta property="og:description" content="Free Sunday 7am run from Good Graces, Norwest. Every pace welcome.">
 <meta property="og:image" content="images/pace-athletics-group.jpg">
-<meta name="theme-color" content="#0C0C0B">
+<meta name="theme-color" content="#0B0B0A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Archivo+Black&display=swap" rel="stylesheet">
 <style>
-  /* ---------- BRAND TOKENS ---------- */
+  /* ================= BRAND TOKENS ================= */
   :root{
-    --black:#0C0C0B;      /* page */
-    --panel:#141413;      /* raised surfaces */
-    --beige:#EFEDE4;      /* primary text / inverse fill */
-    --grey:#8F8F88;       /* secondary text */
-    --hairline:#262624;   /* rules */
-    --dim:#55554F;        /* tertiary */
-    --f-display:'Inter',sans-serif;
-    --f-mark:'Archivo Black',sans-serif;
-    --f-mono:'IBM Plex Mono',monospace;
-    --max:1280px;
-    --gutter:28px;
-    --sec:128px;
+    --ink:#0B0B0A;        /* black */
+    --ink-2:#151514;      /* raised black */
+    --bone:#ECE9E0;       /* beige */
+    --paper:#F6F5F0;      /* off-white */
+    --white:#FFFFFF;
+    --stone:#8E8C85;      /* secondary text on black */
+    --stone-d:#5F5D57;    /* secondary text on light */
+    --line-d:#262624;     /* hairline on black */
+    --line-l:#D5D2C7;     /* hairline on light */
+
+    --sans:'Inter',system-ui,sans-serif;
+    --mark:'Archivo Black','Inter',sans-serif;
+
+    --t-label:11px;       /* tiny uppercase labels */
+    --t-body:15px;
+    --t-lede:clamp(18px,1.7vw,22px);
+    --t-h2:clamp(26px,3.2vw,40px);
+
+    --max:1440px;
+    --pad:clamp(20px,3vw,40px);
+    --sec:clamp(88px,10vw,148px);
     --ease:cubic-bezier(.2,.7,.2,1);
   }
+
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:68px}
-  body{
-    background:var(--black);color:var(--beige);
-    font-family:var(--f-display);font-size:16px;line-height:1.6;
-    -webkit-font-smoothing:antialiased;overflow-x:hidden;
-  }
-  ::selection{background:var(--beige);color:var(--black)}
+  html{scroll-behavior:smooth;scroll-padding-top:60px}
+  body{background:var(--ink);color:var(--bone);font-family:var(--sans);font-size:var(--t-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--bone);color:var(--ink)}
   a{color:inherit;text-decoration:none}
-  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--beige);outline-offset:3px}
   img{display:block;max-width:100%}
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
-  .mono{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
-  .eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);display:block;margin-bottom:22px}
-  h2{
-    font-family:var(--f-display);font-weight:900;text-transform:uppercase;
-    font-size:clamp(32px,5vw,64px);line-height:.98;letter-spacing:-.015em;
-  }
-  .lede{font-size:clamp(17px,1.6vw,20px);line-height:1.6;max-width:56ch}
-  .body-copy{color:var(--grey);margin-top:18px;max-width:56ch}
-  section{padding:var(--sec) 0;border-bottom:1px solid var(--hairline)}
-  .sec-head{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:end;margin-bottom:64px}
+  :focus-visible{outline:2px solid currentColor;outline-offset:3px}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+
+  .label{font-size:var(--t-label);font-weight:500;letter-spacing:.09em;text-transform:uppercase}
+  .muted{color:var(--stone)}
+  h2{font-weight:700;font-size:var(--t-h2);line-height:1.05;letter-spacing:-.02em;text-transform:uppercase}
+  .lede{font-size:var(--t-lede);line-height:1.5;letter-spacing:-.01em;max-width:34ch}
+  p.copy{color:var(--stone);max-width:52ch}
+
+  section{padding:var(--sec) 0}
+  .light{background:var(--paper);color:var(--ink)}
+  .light .muted,.light p.copy{color:var(--stone-d)}
+  .bone{background:var(--bone);color:var(--ink)}
+  .bone .muted,.bone p.copy{color:var(--stone-d)}
+
+  .head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:clamp(48px,6vw,80px)}
+  .head .label{grid-column:1 / 4}
+  .head h2{grid-column:4 / 9}
+  .head .side{grid-column:9 / 13;align-self:end}
 
   .btn{
-    display:inline-block;background:var(--beige);color:var(--black);
-    font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-    padding:14px 26px;border:1px solid var(--beige);cursor:pointer;
-    transition:background .2s var(--ease),color .2s var(--ease);
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font-size:var(--t-label);font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+    padding:14px 24px;border:1px solid currentColor;cursor:pointer;background:transparent;color:inherit;
+    transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease);
   }
-  .btn:hover{background:transparent;color:var(--beige)}
-  .btn-ghost{background:transparent;color:var(--beige)}
-  .btn-ghost:hover{background:var(--beige);color:var(--black)}
+  .btn.fill{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+  .btn.fill:hover{background:transparent;color:var(--bone)}
+  .btn.ghost:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+  .light .btn.ghost:hover,.bone .btn.ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .btn.ink{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .btn.ink:hover{background:transparent;color:var(--ink)}
 
-  /* ---------- NAV ---------- */
-  nav{
-    position:fixed;top:0;left:0;right:0;z-index:50;
-    background:rgba(12,12,11,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid rgba(239,237,228,.08);
-  }
-  .nav-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:68px}
-  .nav-left{display:flex;gap:28px}
-  .nav-left a{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);transition:color .2s}
-  .nav-left a:hover{color:var(--beige)}
-  .monogram{font-family:var(--f-mark);font-size:22px;letter-spacing:-.02em;line-height:1}
-  .nav-right{display:flex;justify-content:flex-end}
-  .nav-right .btn{padding:11px 22px}
+  /* ================= NAV ================= */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;color:var(--white);transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease);border-bottom:1px solid transparent}
+  nav.solid{background:rgba(11,11,10,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line-d)}
+  .nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:60px;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+  .nav-l,.nav-r{display:flex;gap:26px;align-items:center}
+  .nav-r{justify-content:flex-end}
+  .nav-l a,.nav-r a{opacity:.86;transition:opacity .2s}
+  .nav-l a:hover,.nav-r a:hover{opacity:1}
+  .brand{font-weight:900;font-size:15px;letter-spacing:.02em;text-transform:uppercase}
 
-  /* ---------- HERO (photo-led) ---------- */
-  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;border-bottom:1px solid var(--hairline)}
-  .hero-img{position:relative;flex:1;min-height:58svh;overflow:hidden}
-  .hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 70%;filter:grayscale(.3) contrast(1.05)}
-  .hero-img::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(to bottom, rgba(12,12,11,.6) 0%, rgba(12,12,11,0) 22%, rgba(12,12,11,0) 62%, rgba(12,12,11,1) 100%);
+  /* ================= HERO ================= */
+  .hero{position:relative;height:100svh;min-height:600px;overflow:hidden;color:var(--white)}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.42) 0%,rgba(0,0,0,0) 18%,rgba(0,0,0,0) 70%,rgba(0,0,0,.5) 100%),linear-gradient(to right,rgba(0,0,0,.35),rgba(0,0,0,0) 35%)}
+  .hero-cap{position:absolute;left:0;bottom:clamp(24px,3vw,40px);z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:0 var(--pad)}
+  .hero-cap .btns{display:flex;gap:10px;flex-wrap:wrap}
+  .hero .btn.fill{background:var(--white);border-color:var(--white)}
+  .hero .btn.fill:hover{background:transparent;color:var(--white)}
+  .hero .btn.ghost{border-color:rgba(255,255,255,.7)}
+  .hero .btn.ghost:hover{background:var(--white);color:var(--ink);border-color:var(--white)}
+  @media (prefers-reduced-motion:no-preference){
+    .hero img{animation:settle 1.2s var(--ease) both}
+    .hero-cap{animation:rise .8s var(--ease) .35s both}
   }
-  .hero-content{position:relative;z-index:2;width:100%;margin-top:-.62em;padding-bottom:48px;font-size:clamp(56px,10vw,150px)}
-  .hero h1{
-    font-family:var(--f-display);font-weight:900;text-transform:uppercase;
-    font-size:1em;line-height:.86;letter-spacing:-.025em;
-  }
-  .hero .tagline{
-    font-weight:700;line-height:1.4;text-transform:uppercase;
-    font-size:clamp(11px,1.4vw,15px);letter-spacing:.5em;color:#BDBBB2;margin-top:22px;
-  }
-  .hero-bar{
-    display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
-    margin-top:36px;padding-top:22px;border-top:1px solid rgba(239,237,228,.25);
-  }
-  .hero-bar .next{display:flex;gap:28px;flex-wrap:wrap;color:#D6D4CB}
-  .hero-bar .next b{color:var(--beige);font-weight:500}
-  .live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--beige);margin-right:10px;vertical-align:1px}
+  @keyframes settle{from{transform:scale(1.05)}to{transform:none}}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-  /* hero load sequence — the one orchestrated moment */
-  @media (prefers-reduced-motion: no-preference){
-    .hero-img img{animation:settle 1.1s var(--ease) both}
-    .hero h1{animation:rise .8s var(--ease) .15s both}
-    .hero .tagline{animation:rise .8s var(--ease) .3s both}
-    .hero-bar{animation:rise .8s var(--ease) .45s both}
-  }
-  @keyframes settle{from{transform:scale(1.06);opacity:.4}to{transform:scale(1);opacity:1}}
-  @keyframes rise{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+  /* ================= WORDMARK BAND (signature) ================= */
+  .mark{padding:clamp(56px,7vw,96px) 0 clamp(28px,3vw,40px);border-bottom:1px solid var(--line-d)}
+  .mark h1{font-weight:900;text-transform:uppercase;font-size:clamp(52px,13.4vw,206px);line-height:.82;letter-spacing:-.035em;white-space:nowrap}
+  .mark-foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:clamp(22px,3vw,36px)}
+  .tagline{letter-spacing:.42em}
 
-  /* ---------- KEY FACTS STRIP ---------- */
-  .facts{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--hairline)}
-  .fact{padding:30px var(--gutter);border-right:1px solid var(--hairline)}
+  /* ================= FACTS ================= */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr)}
+  .fact{padding:26px var(--pad) 30px;border-right:1px solid var(--line-d)}
   .fact:last-child{border-right:none}
-  .fact .mono{color:var(--grey);display:block;margin-bottom:10px}
-  .fact strong{font-weight:900;text-transform:uppercase;font-size:clamp(18px,1.8vw,24px);letter-spacing:-.01em;line-height:1.1;display:block}
+  .fact .v{display:block;margin-top:8px;font-weight:600;font-size:17px;letter-spacing:-.01em}
 
-  /* ---------- ABOUT ---------- */
-  .disciplines{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--hairline)}
-  .disc{padding:34px 28px;border-right:1px solid var(--hairline);transition:background .2s var(--ease)}
-  .disc:last-child{border-right:none}
-  .disc:hover{background:var(--panel)}
-  .disc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-  .disc-top .mono{color:var(--grey)}
-  .status{font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--hairline);padding:3px 9px;color:var(--grey)}
-  .status.on{border-color:var(--beige);color:var(--beige)}
-  .disc h3{font-weight:900;text-transform:uppercase;font-size:22px;letter-spacing:-.01em;margin-bottom:10px}
-  .disc p{font-size:14px;color:var(--grey);line-height:1.55}
+  /* ================= ABOUT ================= */
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-l);border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l)}
+  .tile{background:var(--paper);padding:26px var(--pad) 34px;min-height:220px;display:flex;flex-direction:column}
+  .tile-top{display:flex;justify-content:space-between}
+  .tile h3{font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:-.01em;margin-top:auto;padding-top:56px}
+  .tile p{font-size:14px;color:var(--stone-d);margin-top:8px;max-width:30ch}
+  .tile .on{color:var(--ink)}
+  .tile .on::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ink);margin-right:8px;vertical-align:1px}
 
-  /* ---------- SUNDAY RUN ---------- */
-  .run-grid{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
-  .steps{border-top:1px solid var(--beige)}
-  .step{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:26px 0;border-bottom:1px solid var(--hairline)}
-  .step .n{font-family:var(--f-mono);font-size:12px;color:var(--grey);padding-top:4px}
-  .step h3{font-weight:700;font-size:18px;margin-bottom:6px}
-  .step p{color:var(--grey);font-size:15px}
-  .step a{color:var(--beige);border-bottom:1px solid var(--dim);transition:border-color .2s}
-  .step a:hover{border-color:var(--beige)}
-  .run-meta{margin-top:36px;display:grid;gap:0;border-top:1px solid var(--hairline)}
-  .run-meta div{display:grid;grid-template-columns:120px 1fr;padding:12px 0;border-bottom:1px solid var(--hairline);font-size:14px}
-  .run-meta .mono{color:var(--grey);padding-top:3px}
+  /* ================= SUNDAY RUN ================= */
+  .run{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+  .run-l{grid-column:1 / 6}
+  .run-r{grid-column:7 / 13}
+  .spec{margin-top:40px;border-top:1px solid var(--line-d)}
+  .spec div{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--line-d);font-size:14px}
+  .step{display:grid;grid-template-columns:56px 1fr;padding:28px 0;border-top:1px solid var(--line-d)}
+  .step:last-child{border-bottom:1px solid var(--line-d)}
+  .step h3{font-weight:600;font-size:19px;letter-spacing:-.01em;margin-bottom:6px}
+  .step p{color:var(--stone);font-size:15px;max-width:48ch}
+  .step a{color:var(--bone);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--stone)}
 
-  /* ---------- FOUNDERS / RESULTS ---------- */
-  .duo{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center;margin-bottom:120px}
-  .duo figure{border:1px solid var(--hairline);overflow:hidden}
-  .duo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 40%}
-  figcaption{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);padding:12px 14px;border-top:1px solid var(--hairline);background:var(--black)}
-  .results{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--hairline);margin-top:40px}
-  .result{padding:26px 24px;border-right:1px solid var(--hairline)}
-  .result:last-child{border-right:none}
-  .result .mono{color:var(--grey);display:block;margin-bottom:12px}
-  .result strong{display:block;font-weight:900;font-size:clamp(28px,3.2vw,44px);line-height:1;letter-spacing:-.02em;text-transform:uppercase}
-  .result span.sub{display:block;font-size:13px;color:var(--grey);margin-top:10px}
+  /* ================= FOUNDERS ================= */
+  .duo{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l)}
+  .duo-img{position:relative;min-height:560px;overflow:hidden}
+  .duo-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+  .duo-txt{padding:clamp(40px,5vw,72px) var(--pad);display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+  .stats{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line-l)}
+  .stat{padding:22px 0 0}
+  .stat + .stat{padding-left:24px;border-left:1px solid var(--line-l)}
+  .stat strong{display:block;font-weight:900;font-size:clamp(38px,4.6vw,64px);line-height:.95;letter-spacing:-.03em;margin:12px 0 8px}
 
-  .founder{display:grid;grid-template-columns:320px 1fr;gap:64px;align-items:start}
-  .founder + .founder{margin-top:110px;padding-top:110px;border-top:1px solid var(--hairline)}
-  .f-photo{border:1px solid var(--hairline);overflow:hidden}
-  .f-photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
-  .f-name{font-weight:900;text-transform:uppercase;font-size:clamp(30px,3.6vw,46px);line-height:1;letter-spacing:-.015em}
-  .f-stats{border-top:1px solid var(--beige);margin:28px 0 30px}
-  .f-stat{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:13px 0;border-bottom:1px solid var(--hairline);font-size:14.5px}
-  .f-stat .mono{color:var(--grey);padding-top:2px}
-  .f-bio{color:var(--grey);font-size:15.5px;line-height:1.75;max-width:62ch}
-  .f-bio em{color:var(--beige);font-style:normal}
+  .people{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,40px);margin-top:clamp(72px,8vw,120px)}
+  .person figure{overflow:hidden;background:var(--bone)}
+  .person img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .person .cap{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line-l)}
+  .person h3{font-weight:700;font-size:clamp(22px,2.2vw,28px);text-transform:uppercase;letter-spacing:-.015em;margin:28px 0 18px}
+  .rows div{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:11px 0;border-top:1px solid var(--line-l);font-size:14px}
+  .rows div:last-child{border-bottom:1px solid var(--line-l)}
+  .person .bio{margin-top:22px;font-size:15px;line-height:1.7;color:var(--stone-d)}
+  .person .bio em{font-style:normal;color:var(--ink)}
 
-  /* ---------- EVENTS CAROUSEL ---------- */
-  .sec-head-r{display:flex;flex-direction:column;gap:28px}
-  .car-ctrl{display:flex;gap:8px}
-  .car-btn{
-    width:48px;height:48px;background:transparent;color:var(--beige);border:1px solid var(--hairline);
-    font-size:18px;cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s;
-  }
-  .car-btn:hover{background:var(--beige);color:var(--black);border-color:var(--beige)}
-  .car-btn:disabled{opacity:.3;cursor:default;background:transparent;color:var(--beige);border-color:var(--hairline)}
-  .carousel{
-    display:grid;grid-auto-flow:column;grid-auto-columns:minmax(300px,400px);gap:16px;
-    overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
-    padding:0 max(var(--gutter), calc((100vw - var(--max))/2 + var(--gutter))) 8px;
-    scroll-padding-inline:max(var(--gutter), calc((100vw - var(--max))/2 + var(--gutter)));
-    scrollbar-width:none;
-  }
+  /* ================= EVENTS ================= */
+  .car-wrap{position:relative}
+  .car-ctrl{display:flex;gap:8px;margin-top:24px}
+  .car-btn{width:44px;height:44px;border:1px solid var(--line-l);background:transparent;color:var(--ink);font-size:16px;cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease)}
+  .car-btn:hover{background:var(--ink);color:var(--paper)}
+  .car-btn:disabled{opacity:.3;cursor:default;background:transparent;color:var(--ink)}
+  .carousel{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 3px) / 4);gap:1px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;background:var(--line-l);border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l)}
   .carousel::-webkit-scrollbar{display:none}
-  .carousel:focus-visible{outline:2px solid var(--beige);outline-offset:-2px}
-  .card{scroll-snap-align:start;border:1px solid var(--hairline);display:flex;flex-direction:column;background:var(--black)}
-  .card-media{aspect-ratio:4/5;overflow:hidden;position:relative}
+  .card{scroll-snap-align:start;background:var(--paper);display:flex;flex-direction:column}
+  .card-media{aspect-ratio:4/5;overflow:hidden;background:var(--bone)}
   .card-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-  .card:hover .card-media img{transform:scale(1.03)}
-  .card-type{background:var(--panel);padding:24px;display:flex;flex-direction:column;container-type:inline-size}
-  .card-type .tag{align-self:flex-start;justify-self:auto}
-  .ct-date{font-family:var(--f-mono);font-size:13px;color:var(--grey);margin-top:auto;letter-spacing:.08em}
-  .ct-title{font-weight:900;text-transform:uppercase;font-size:30cqi;line-height:.9;letter-spacing:-.02em;margin:12px 0 18px}
-  .ct-meta{color:var(--grey)}
-  .card-body{padding:20px 22px 24px;border-top:1px solid var(--hairline)}
-  .card-body h3{font-weight:900;text-transform:uppercase;font-size:20px;letter-spacing:-.01em;line-height:1.1}
-  .card-body .with{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--beige);margin-top:10px}
-  .card-body .meta{font-size:13.5px;color:var(--grey);margin-top:6px}
-  .card-body .note{font-size:13.5px;color:var(--grey);margin-top:12px;padding-top:12px;border-top:1px solid var(--hairline)}
-  .tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--hairline);padding:4px 10px;color:var(--grey);white-space:nowrap}
-  .tag.hl{border-color:var(--beige);color:var(--black);background:var(--beige)}
+  .card:hover .card-media img{transform:scale(1.025)}
+  .card-type{background:var(--ink);color:var(--bone);padding:20px;display:flex;flex-direction:column;container-type:inline-size}
+  .card-type .big{margin-top:auto;font-weight:900;font-size:30cqi;line-height:.85;letter-spacing:-.04em}
+  .card-type .sub{margin-top:14px;color:var(--stone)}
+  .pill{align-self:flex-start;background:var(--bone);color:var(--ink);padding:5px 10px}
+  .card-info{padding:14px var(--pad) 22px 16px}
+  .card-info .r1{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+  .card-info h3{font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+  .card-info .date{font-size:12px;color:var(--stone-d);white-space:nowrap}
+  .card-info .with{font-size:13px;color:var(--stone-d);margin-top:2px}
+  .card-info .note{font-size:13px;color:var(--stone-d);margin-top:10px}
 
-  /* ---------- PARTNERS ---------- */
-  .partners{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--hairline)}
-  .partner{padding:34px 28px;border-right:1px solid var(--hairline);display:flex;flex-direction:column;gap:14px;min-height:200px}
-  .partner:last-child{border-right:none}
-  .partner .mono{color:var(--grey)}
-  .partner .pname{font-family:var(--f-mark);font-size:clamp(22px,2.2vw,30px);letter-spacing:.02em;text-transform:uppercase;line-height:1}
-  .partner p{font-size:14px;color:var(--grey);margin-top:auto}
-  .partner.lead{background:var(--beige);color:var(--black)}
-  .partner.lead .mono,.partner.lead p{color:#5E5D55}
+  /* ================= PARTNERS ================= */
+  .plist{border-top:1px solid var(--line-d)}
+  .prow{display:grid;grid-template-columns:3fr 4fr 5fr;gap:24px;align-items:baseline;padding:26px 0;border-bottom:1px solid var(--line-d)}
+  .prow .pn{font-family:var(--mark);font-size:clamp(22px,2.6vw,34px);text-transform:uppercase;letter-spacing:.01em;line-height:1}
+  .prow p{color:var(--stone);font-size:14px}
 
-  /* ---------- MEMBERSHIP ---------- */
-  .tiers{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--hairline)}
-  .tier{padding:44px 36px;border-right:1px solid var(--hairline);display:flex;flex-direction:column}
-  .tier:last-child{border-right:none}
-  .tier > .mono{display:block;margin-bottom:24px;color:var(--grey)}
-  .tier-price{font-weight:900;font-size:clamp(40px,4.4vw,56px);line-height:1;text-transform:uppercase;letter-spacing:-.02em}
-  .tier-sub{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);margin-top:10px}
-  .tier ul{list-style:none;margin:30px 0 38px;flex:1}
-  .tier li{font-size:14.5px;color:var(--grey);padding:11px 0;border-bottom:1px solid var(--hairline)}
-  .tier .btn{text-align:center;align-self:flex-start}
-  .tier.member{background:var(--panel)}
+  /* ================= MEMBERSHIP ================= */
+  .tiers{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-l);border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l)}
+  .tier{background:var(--bone);padding:36px var(--pad) 40px;display:flex;flex-direction:column}
+  .tier.dark{background:var(--ink);color:var(--bone)}
+  .tier .price{font-weight:900;font-size:clamp(44px,5vw,72px);line-height:.9;letter-spacing:-.03em;text-transform:uppercase;margin:28px 0 6px}
+  .tier ul{list-style:none;margin:32px 0 36px;flex:1;max-width:420px}
+  .tier li{padding:11px 0;border-top:1px solid var(--line-l);font-size:14px}
+  .tier.dark li{border-color:var(--line-d)}
+  .tier li:last-child{border-bottom:1px solid var(--line-l)}
+  .tier.dark li:last-child{border-color:var(--line-d)}
+  .tier .btn{align-self:flex-start}
 
-  /* ---------- JOIN ---------- */
-  .join-grid{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:end}
-  .join-form{display:flex;margin-top:8px}
-  .join-form input{
-    flex:1;min-width:0;font-family:var(--f-mono);font-size:13px;
-    background:transparent;border:1px solid var(--beige);border-right:none;
-    padding:14px 18px;color:var(--beige);border-radius:0;
-  }
-  .join-form input::placeholder{color:var(--grey)}
-  .form-note{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--grey);margin-top:14px;min-height:16px}
-  .join-alt{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+  /* ================= JOIN ================= */
+  .join{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+  .join-l{grid-column:1 / 7}
+  .join-r{grid-column:8 / 13}
+  .form{display:flex;border-bottom:1px solid var(--bone)}
+  .form input{flex:1;min-width:0;background:transparent;border:none;color:var(--bone);font:500 16px var(--sans);padding:14px 0}
+  .form input::placeholder{color:var(--stone)}
+  .form input:focus-visible{outline:none}
+  .form:focus-within{border-color:var(--white)}
+  .form button{background:transparent;border:none;color:var(--bone);cursor:pointer;padding:0 0 0 16px}
+  .form-note{min-height:18px;margin-top:12px;color:var(--stone)}
+  .socials{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
 
-  /* ---------- FOOTER ---------- */
-  footer{padding:64px 0 40px;text-align:center}
-  .foot-mark{font-family:var(--f-mark);font-size:30px;margin-bottom:8px}
-  .foot-tag{font-weight:700;font-size:9px;letter-spacing:.5em;text-transform:uppercase;color:var(--grey);text-indent:.5em;margin-bottom:32px}
-  .foot-links{display:flex;justify-content:center;gap:32px;color:var(--grey);flex-wrap:wrap}
-  .foot-links a{transition:color .2s}
-  .foot-links a:hover{color:var(--beige)}
-  .foot-copy{margin-top:32px;color:var(--dim)}
+  /* ================= FOOTER ================= */
+  footer{border-top:1px solid var(--line-d);padding:48px 0 32px}
+  .foot{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:24px}
+  .foot .hc{font-family:var(--mark);font-size:64px;line-height:.8;letter-spacing:-.02em;text-align:center}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap}
+  .foot-r{text-align:right}
 
-  @media (prefers-reduced-motion: reduce){
+  @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     *,*::before,*::after{animation:none!important;transition:none!important}
   }
 
-  /* ---------- RESPONSIVE ---------- */
-  @media(max-width:1000px){
-    .partners{grid-template-columns:1fr 1fr}
-    .partner:nth-child(2n){border-right:none}
-    .partner:nth-child(-n+2){border-bottom:1px solid var(--hairline)}
+  /* ================= RESPONSIVE ================= */
+  @media(max-width:1100px){
+    .carousel{grid-auto-columns:calc((100% - 2px) / 2.4)}
   }
-  @media(max-width:860px){
-    :root{--sec:84px;--gutter:22px}
-    .nav-left{display:none}
-    .nav-inner{grid-template-columns:auto 1fr}
-    .sec-head,.run-grid,.duo,.founder,.join-grid{grid-template-columns:1fr;gap:36px}
-    .sec-head{margin-bottom:44px}
-    .duo{margin-bottom:84px}
-    .founder + .founder{margin-top:72px;padding-top:72px}
-    .f-photo{max-width:360px}
+  @media(max-width:900px){
+    .nav-l{display:none}
+    .nav-in{grid-template-columns:auto 1fr}
+    .nav-r .hide-m{display:none}
+    .head,.run,.join{grid-template-columns:1fr;gap:20px}
+    .head .label,.head h2,.head .side,.run-l,.run-r,.join-l,.join-r{grid-column:1 / -1}
+    .run{gap:48px}
     .facts{grid-template-columns:1fr 1fr}
     .fact:nth-child(2n){border-right:none}
-    .fact:nth-child(-n+2){border-bottom:1px solid var(--hairline)}
-    .disciplines{grid-template-columns:1fr 1fr}
-    .disc:nth-child(2n){border-right:none}
-    .disc:nth-child(-n+2){border-bottom:1px solid var(--hairline)}
+    .fact:nth-child(-n+2){border-bottom:1px solid var(--line-d)}
+    .tiles{grid-template-columns:1fr 1fr}
+    .duo{grid-template-columns:1fr}
+    .duo-img{min-height:0;aspect-ratio:4/5}
+    .people{grid-template-columns:1fr;gap:72px}
+    .prow{grid-template-columns:1fr;gap:8px}
     .tiers{grid-template-columns:1fr}
-    .tier{border-right:none;border-bottom:1px solid var(--hairline)}
-    .tier:last-child{border-bottom:none}
-    .f-stat{grid-template-columns:120px 1fr;gap:16px}
+    .foot{grid-template-columns:1fr;justify-items:center;text-align:center}
+    .foot-r{text-align:center}
+    .foot .hc{order:-1}
   }
-  @media(max-width:520px){
-    .hero-content{padding-bottom:32px}
-    .hero-img{min-height:52svh}
-    .hero-bar{flex-direction:column;align-items:flex-start}
-    .hero-bar .next{gap:10px 20px}
-    .hero .tagline{letter-spacing:.32em}
-    .partners{grid-template-columns:1fr}
+  @media(max-width:700px){
+    .hero{height:auto;min-height:0;display:flex;flex-direction:column;background:var(--ink)}
+    .hero img{position:relative;inset:auto;height:72svh;min-height:440px}
+    .hero::after{bottom:auto;height:72svh;min-height:440px;background:linear-gradient(to bottom,rgba(0,0,0,.45),rgba(0,0,0,0) 22%)}
+    .hero-cap{position:static;padding:22px var(--pad) 26px}
+    .hero-cap .btns{width:100%}
+    .hero-cap .btn{flex:1}
+  }
+  @media(max-width:560px){
     .carousel{grid-auto-columns:82%}
-    .partner{border-right:none!important;border-bottom:1px solid var(--hairline);min-height:0}
-    .partner:last-child{border-bottom:none}
-    .results{grid-template-columns:1fr}
-    .result{border-right:none;border-bottom:1px solid var(--hairline)}
-    .result:last-child{border-bottom:none}
-    .tier{padding:36px 24px}
+    .tiles{grid-template-columns:1fr}
+    .tile{min-height:0}
+    .tile h3{padding-top:28px}
+    .stats{grid-template-columns:1fr}
+    .stat + .stat{padding-left:0;border-left:none;border-top:1px solid var(--line-l);margin-top:22px}
+    .tagline{letter-spacing:.28em}
     .tier .btn{align-self:stretch}
+    .rows div{grid-template-columns:96px 1fr}
   }
 </style>
 </head>
 <body>
 
-<nav aria-label="Main">
-  <div class="wrap nav-inner">
-    <div class="nav-left">
+<nav id="nav" aria-label="Main">
+  <div class="nav-in">
+    <div class="nav-l label">
       <a href="#run">Sunday Run</a>
       <a href="#founders">Founders</a>
       <a href="#events">Events</a>
       <a href="#partners">Partners</a>
     </div>
-    <a href="#top" class="monogram" aria-label="Hybrid Club home">HC</a>
-    <div class="nav-right">
-      <a href="#run" class="btn">Run with us</a>
+    <a href="#top" class="brand" aria-label="Hybrid Club home">Hybrid Club</a>
+    <div class="nav-r label">
+      <a href="https://www.instagram.com/hybridclubau/" target="_blank" rel="noopener" class="hide-m">Instagram</a>
+      <a href="#join">Join</a>
     </div>
   </div>
 </nav>
 
 <header class="hero" id="top">
-  <div class="hero-img">
-    <img src="images/pace-athletics-group.jpg" alt="Hybrid Club runners together after the Hybrid Club x Pace Athletics run" fetchpriority="high">
-  </div>
-  <div class="wrap hero-content">
-    <h1>Hybrid<br>Club</h1>
-    <p class="tagline">Push Past Your Limits</p>
-    <div class="hero-bar">
-      <div class="next mono">
-        <span><span class="live-dot" aria-hidden="true"></span><b>Every Sunday</b></span>
-        <span>07:00</span>
-        <span>Good Graces, Norwest</span>
-        <span>Free · All paces</span>
-      </div>
-      <a href="#run" class="btn">How to join</a>
+  <img src="images/pace-athletics-group.jpg" alt="Hybrid Club members together after a Saturday group run" fetchpriority="high">
+  <div class="hero-cap">
+    <span class="label">Sunday Run Club — Norwest, Sydney</span>
+    <div class="btns">
+      <a href="#run" class="btn fill">Run with us</a>
+      <a href="#events" class="btn ghost">Events</a>
     </div>
   </div>
 </header>
 
-<div class="facts" aria-label="Club at a glance">
-  <div class="fact"><span class="mono">Run club</span><strong>Every Sunday</strong></div>
-  <div class="fact"><span class="mono">First event</span><strong>50 tickets — sold out</strong></div>
-  <div class="fact"><span class="mono">Official partner</span><strong>LSKD Pacer Program</strong></div>
-  <div class="fact"><span class="mono">Based in</span><strong>The Hills, Sydney</strong></div>
+<div class="mark">
+  <div class="wrap">
+    <h1>Hybrid Club</h1>
+    <div class="mark-foot label">
+      <span class="tagline muted">Push Past Your Limits</span>
+      <span class="muted">Est. 2026 — The Hills, Sydney</span>
+    </div>
+  </div>
 </div>
 
-<section id="about">
+<div class="facts" aria-label="Club at a glance">
+  <div class="fact"><span class="label muted">Run club</span><span class="v">Every Sunday, 7am</span></div>
+  <div class="fact"><span class="label muted">Home base</span><span class="v">Good Graces, Norwest</span></div>
+  <div class="fact"><span class="label muted">Official partner</span><span class="v">LSKD Pacer Program</span></div>
+  <div class="fact"><span class="label muted">Launch event</span><span class="v">50 tickets, sold out</span></div>
+</div>
+
+<section id="about" class="light">
   <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow">The Club</span>
-        <h2>Every discipline.<br>One community.</h2>
-      </div>
-      <div>
-        <p class="lede">Most clubs make you pick a lane. Lifters lift, runners run, and the people training across all of it end up training alone. Hybrid Club exists to change that.</p>
-        <p class="body-copy">We're a community in Sydney's Hills District for people who train seriously around full-time work and study. It starts with a weekly run. Strength, ride and swim sessions come next. The standard is showing up, not keeping up.</p>
+    <div class="head">
+      <span class="label muted">The Club</span>
+      <h2>Every discipline.<br>One community.</h2>
+      <div class="side">
+        <p class="lede">Most clubs make you pick a lane. We're for people who train across all of it.</p>
+        <p class="copy" style="margin-top:18px">A community in Sydney's Hills District for people who train seriously around full-time work and study. It starts with a weekly run. Strength, ride and swim sessions come next. The standard is showing up, not keeping up.</p>
       </div>
     </div>
-    <div class="disciplines">
-      <div class="disc">
-        <div class="disc-top"><span class="mono">01</span><span class="status on">Weekly</span></div>
-        <h3>Run</h3>
-        <p>Sunday 7am from Good Graces, Norwest. A 5km loop at your pace. Nobody gets dropped.</p>
-      </div>
-      <div class="disc">
-        <div class="disc-top"><span class="mono">02</span><span class="status">Coming</span></div>
-        <h3>Lift</h3>
-        <p>Strength sessions built around the compound lifts. Training that carries over to everything else.</p>
-      </div>
-      <div class="disc">
-        <div class="disc-top"><span class="mono">03</span><span class="status">Coming</span></div>
-        <h3>Ride</h3>
-        <p>Weekend group rides with regroups, for road and tri bikes.</p>
-      </div>
-      <div class="disc">
-        <div class="disc-top"><span class="mono">04</span><span class="status">Coming</span></div>
-        <h3>Swim &amp; Tri</h3>
-        <p>Squad swims, open water and race prep, from your first triathlon to a full Ironman.</p>
-      </div>
+  </div>
+  <div class="tiles">
+    <div class="tile">
+      <div class="tile-top label"><span>01</span><span class="on">Weekly</span></div>
+      <h3>Run</h3>
+      <p>Sunday 7am from Good Graces, Norwest. 5km at your pace. Nobody gets dropped.</p>
+    </div>
+    <div class="tile">
+      <div class="tile-top label"><span>02</span><span class="muted">Coming</span></div>
+      <h3>Lift</h3>
+      <p>Strength sessions built on the compound lifts. Training that carries over.</p>
+    </div>
+    <div class="tile">
+      <div class="tile-top label"><span>03</span><span class="muted">Coming</span></div>
+      <h3>Ride</h3>
+      <p>Weekend group rides with regroups, for road and tri bikes.</p>
+    </div>
+    <div class="tile">
+      <div class="tile-top label"><span>04</span><span class="muted">Coming</span></div>
+      <h3>Swim &amp; Tri</h3>
+      <p>Squad swims, open water and race prep, from first triathlon to full Ironman.</p>
     </div>
   </div>
 </section>
 
 <section id="run">
-  <div class="wrap run-grid">
-    <div>
-      <span class="eyebrow">Sunday Run Club</span>
-      <h2>Sundays,<br>7am.</h2>
-      <p class="body-copy">Free and open to everyone. Run it, jog it or walk it. Bring a mate.</p>
-      <div class="run-meta">
-        <div><span class="mono">When</span><span>Every Sunday, 7:00am</span></div>
-        <div><span class="mono">Where</span><span>Good Graces, Norwest</span></div>
-        <div><span class="mono">Distance</span><span>5km loop</span></div>
-        <div><span class="mono">Cost</span><span>Free</span></div>
+  <div class="wrap run">
+    <div class="run-l">
+      <span class="label muted">Sunday Run Club</span>
+      <h2 style="margin-top:20px">Sundays, 7am.</h2>
+      <p class="copy" style="margin-top:18px">Free and open to everyone. Run it, jog it or walk it. Bring a mate.</p>
+      <div class="spec">
+        <div><span class="label muted">When</span><span>Every Sunday, 7:00am</span></div>
+        <div><span class="label muted">Where</span><span>Good Graces, Norwest</span></div>
+        <div><span class="label muted">Distance</span><span>5km loop</span></div>
+        <div><span class="label muted">Cost</span><span>Free</span></div>
       </div>
     </div>
-    <div>
-      <div class="steps">
+    <div class="run-r">
+      <span class="label muted">How to join</span>
+      <div style="margin-top:20px">
         <div class="step">
-          <span class="n">01</span>
+          <span class="label muted">01</span>
           <div>
             <h3>Join the group chat</h3>
-            <p>Head to <a href="https://www.instagram.com/hybridclubau/" target="_blank" rel="noopener">@hybridclubau</a> and tap the “Hybrid Chats” highlight. Session updates and event drops go here first.</p>
+            <p>Go to <a href="https://www.instagram.com/hybridclubau/" target="_blank" rel="noopener">@hybridclubau</a> and tap the “Hybrid Chats” highlight. Session updates and event drops go here first.</p>
           </div>
         </div>
         <div class="step">
-          <span class="n">02</span>
+          <span class="label muted">02</span>
           <div>
             <h3>Join our Strava club</h3>
-            <p>The link is in our Instagram bio. Log your Sunday run with the rest of the club.</p>
+            <p>The link is in our Instagram bio. It's also how you register for events.</p>
           </div>
         </div>
         <div class="step">
-          <span class="n">03</span>
+          <span class="label muted">03</span>
           <div>
             <h3>Turn up Sunday</h3>
-            <p>Meet at Good Graces, Norwest at 7am. Say hi to Cooper or Erica and you're in.</p>
+            <p>Good Graces, Norwest at 7am. Say hi to Cooper or Erica and you're in.</p>
           </div>
         </div>
       </div>
@@ -414,80 +392,74 @@
   </div>
 </section>
 
-<section id="founders">
+<section id="founders" class="light">
   <div class="wrap">
-    <div class="duo">
-      <div>
-        <span class="eyebrow">Founders</span>
-        <h2>Built by two people who train.</h2>
-        <p class="lede" style="margin-top:28px">Cooper and Erica started Hybrid Club because training alone gets old. This year they've both crossed a big finish line of their own.</p>
-        <div class="results">
-          <div class="result">
-            <span class="mono">Cooper · Ironman Australia</span>
-            <strong>Sub 11:30</strong>
-            <span class="sub">Full Ironman, Port Macquarie</span>
-          </div>
-          <div class="result">
-            <span class="mono">Erica · Sydney Marathon</span>
-            <strong>42.2km</strong>
-            <span class="sub">Marathon finisher</span>
-          </div>
-        </div>
-      </div>
-      <figure>
-        <img src="images/sydney-marathon.jpg" alt="Cooper and Erica wearing their Sydney Marathon finisher medals" loading="lazy">
-        <figcaption>Sydney Marathon — finisher medals</figcaption>
-      </figure>
+    <div class="head">
+      <span class="label muted">Founders</span>
+      <h2>Built by two people who train.</h2>
+      <p class="side copy">Cooper and Erica started Hybrid Club because training alone gets old. This year they both crossed a big finish line of their own.</p>
     </div>
+  </div>
 
-    <div class="founder">
-      <figure class="f-photo">
-        <img src="images/ironman-port-mac.jpg" alt="Cooper Smith crossing the Ironman Australia finish line in Port Macquarie" loading="lazy">
-        <figcaption>Ironman Australia — Port Macquarie</figcaption>
-      </figure>
-      <div>
-        <span class="eyebrow">Co-Founder</span>
-        <p class="f-name">Cooper Smith</p>
-        <div class="f-stats">
-          <div class="f-stat"><span class="mono">Latest</span><span>Ironman Australia, Port Macquarie: sub 11:30</span></div>
-          <div class="f-stat"><span class="mono">Also</span><span>Ironman 70.3 Western Sydney: 4:51</span></div>
-          <div class="f-stat"><span class="mono">Day job</span><span>Asset Finance Broker</span></div>
-          <div class="f-stat"><span class="mono">Disciplines</span><span>Triathlon · Strength · Hybrid</span></div>
+  <div class="duo">
+    <div class="duo-img">
+      <img src="images/marathon-medals.jpg" alt="Erica and Cooper holding their Sydney Marathon finisher medals" loading="lazy">
+    </div>
+    <div class="duo-txt">
+      <span class="label muted">2026 results</span>
+      <div class="stats">
+        <div class="stat">
+          <span class="label muted">Cooper · Ironman Australia</span>
+          <strong>Sub 11:30</strong>
+          <span class="label">Full Ironman, Port Macquarie</span>
         </div>
-        <p class="f-bio">I'm from the Hills area in Sydney. I first found my passion in the gym, and over the years it's turned into hybrid and triathlon training. I want to get better at every discipline: swimming, cycling and running. <em>The main reason we created this club is to bring young, like-minded people together, not just to train but to build friendships.</em> I know from experience how isolating it is to only ever train by yourself.</p>
+        <div class="stat">
+          <span class="label muted">Erica · Sydney Marathon</span>
+          <strong>42.2km</strong>
+          <span class="label">Marathon finisher</span>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="founder">
-      <figure class="f-photo">
-        <img src="images/erica-run.jpg" alt="Erica Rose running in a race" loading="lazy">
-        <figcaption>Race day — Sydney</figcaption>
-      </figure>
-      <div>
-        <span class="eyebrow">Co-Founder</span>
-        <p class="f-name">Erica Rose</p>
-        <div class="f-stats">
-          <div class="f-stat"><span class="mono">Latest</span><span>Sydney Marathon finisher</span></div>
-          <div class="f-stat"><span class="mono">Also</span><span>First half marathon, alongside full-time study</span></div>
-          <div class="f-stat"><span class="mono">Day job</span><span>OT Nurse</span></div>
-          <div class="f-stat"><span class="mono">Disciplines</span><span>Running · Strength · Pilates</span></div>
+  <div class="wrap">
+    <div class="people">
+      <article class="person">
+        <figure><img src="images/ironman-port-mac.jpg" alt="Cooper Smith crossing the Ironman Australia finish line in Port Macquarie" loading="lazy"></figure>
+        <div class="cap label"><span>Ironman Australia</span><span class="muted">Port Macquarie</span></div>
+        <h3>Cooper Smith</h3>
+        <div class="rows">
+          <div><span class="label muted">Latest</span><span>Ironman Australia, Port Macquarie: sub 11:30</span></div>
+          <div><span class="label muted">Also</span><span>Ironman 70.3 Western Sydney: 4:51</span></div>
+          <div><span class="label muted">Day job</span><span>Asset Finance Broker</span></div>
+          <div><span class="label muted">Trains</span><span>Triathlon · Strength · Hybrid</span></div>
         </div>
-        <p class="f-bio">I'm from the Hills in Sydney. I've found my love of fitness over the years, whether that's running, lifting weights, attempting a crazy Pilates move or cooking a high-protein meal. Fitness has changed the way I look at life and how I can keep improving. <em>As a nurse I know first-hand how important a healthy life is</em>, from two litres of water a day to eight hours of sleep. I hope Hybrid Club is a place where we can share that journey and help each other along the way. Can't wait to see you out there.</p>
-      </div>
+        <p class="bio">I'm from the Hills area in Sydney. I first found my passion in the gym, and over the years it's turned into hybrid and triathlon training. <em>We created this club to bring young, like-minded people together, not just to train but to build friendships.</em> I know from experience how isolating it is to only ever train by yourself.</p>
+      </article>
+      <article class="person">
+        <figure><img src="images/erica-sydney-marathon.jpg" alt="Erica Rose running the Sydney Marathon" loading="lazy"></figure>
+        <div class="cap label"><span>Sydney Marathon</span><span class="muted">2026</span></div>
+        <h3>Erica Rose</h3>
+        <div class="rows">
+          <div><span class="label muted">Latest</span><span>Sydney Marathon finisher</span></div>
+          <div><span class="label muted">Also</span><span>First half marathon, alongside full-time study</span></div>
+          <div><span class="label muted">Day job</span><span>OT Nurse</span></div>
+          <div><span class="label muted">Trains</span><span>Running · Strength · Pilates</span></div>
+        </div>
+        <p class="bio">I'm from the Hills in Sydney. I've found my love of fitness over the years, whether that's running, lifting weights or attempting a crazy Pilates move. <em>As a nurse I know first-hand how important a healthy life is</em>, from two litres of water a day to eight hours of sleep. I hope Hybrid Club is a place where we share that journey and help each other along the way.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<section id="events">
+<section id="events" class="bone">
   <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow">Events</span>
-        <h2>What we've<br>run so far.</h2>
-      </div>
-      <div class="sec-head-r">
-        <p class="lede">We started with a waitlist. Our first event sold out all 50 tickets, and we've been running ever since.</p>
-        <div class="car-ctrl" aria-label="Carousel controls">
+    <div class="head">
+      <span class="label muted">Events</span>
+      <h2>What we've run so far.</h2>
+      <div class="side">
+        <p class="copy">We started with a waitlist. Our first event sold out all 50 tickets, and we've been running ever since.</p>
+        <div class="car-ctrl">
           <button class="car-btn" data-dir="-1" aria-label="Previous event">&larr;</button>
           <button class="car-btn" data-dir="1" aria-label="Next event">&rarr;</button>
         </div>
@@ -498,48 +470,39 @@
   <div class="carousel" id="carousel" tabindex="0" aria-label="Hybrid Club events">
     <article class="card">
       <div class="card-media card-type">
-        <span class="tag hl">Up next</span>
-        <div class="ct-date">Sat · 7PM</div>
-        <div class="ct-title">31.10</div>
-        <div class="ct-meta mono">5.4km · Costumes compulsory</div>
+        <span class="pill label">Up next</span>
+        <span class="big">31.10</span>
+        <span class="sub label">Sat 7pm · 5.4km · Costumes on</span>
       </div>
-      <div class="card-body">
-        <h3>Halloween Run</h3>
+      <div class="card-info">
+        <div class="r1"><h3>Halloween Run</h3><span class="date">31 Oct</span></div>
         <p class="with">Hybrid Club × Yo-Chi</p>
-        <p class="meta">Sat 31 Oct, 7pm · Balmoral Rd Reserve to Yo-Chi Rouse Hill</p>
-        <p class="note">Yo-Chi voucher and 3 Good Graces cards up for grabs at the finish. Register by joining our Strava club.</p>
+        <p class="note">Balmoral Rd Reserve to Yo-Chi Rouse Hill. Register via our Strava club.</p>
       </div>
     </article>
-
     <article class="card">
       <div class="card-media"><img src="images/pace-athletics-group.jpg" alt="The group after the Hybrid Club x Pace Athletics run" loading="lazy"></div>
-      <div class="card-body">
-        <h3>Saturday Group Run</h3>
+      <div class="card-info">
+        <div class="r1"><h3>Saturday Group Run</h3><span class="date">24 Oct</span></div>
         <p class="with">Hybrid Club × Pace Athletics</p>
-        <p class="meta">Sat 24 Oct, 7am</p>
       </div>
     </article>
-
     <article class="card">
-      <div class="card-media"><img src="images/lskd-popup.jpg" alt="LSKD pink Breast Cancer Awareness Month collection on a rack and table" loading="lazy"></div>
-      <div class="card-body">
-        <h3>Breast Cancer Awareness Run</h3>
+      <div class="card-media"><img src="images/lskd-popup.jpg" alt="LSKD pink Breast Cancer Awareness Month collection at the pop-up" loading="lazy"></div>
+      <div class="card-info">
+        <div class="r1"><h3>Breast Cancer Awareness Run</h3><span class="date">15 Oct</span></div>
         <p class="with">Hybrid Club × LSKD</p>
-        <p class="meta">Thu 15 Oct, 6:15am · Good Graces, Norwest</p>
       </div>
     </article>
-
     <article class="card">
       <div class="card-media card-type">
-        <span class="tag">Sold out</span>
-        <div class="ct-date">Tickets</div>
-        <div class="ct-title">50/50</div>
-        <div class="ct-meta mono">Sold out · extra release added</div>
+        <span class="pill label">Sold out</span>
+        <span class="big">50/50</span>
+        <span class="sub label">Tickets · extra release added</span>
       </div>
-      <div class="card-body">
-        <h3>Launch Event</h3>
+      <div class="card-info">
+        <div class="r1"><h3>Launch Event</h3><span class="date">Sept</span></div>
         <p class="with">Hybrid Club × Good Graces</p>
-        <p class="meta">Sept 2026 · Good Graces, Norwest</p>
       </div>
     </article>
   </div>
@@ -547,138 +510,113 @@
 
 <section id="partners">
   <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow">Partners</span>
-        <h2>Who we<br>run with.</h2>
-      </div>
-      <p class="lede">Local brands and venues that back the club and look after our members.</p>
+    <div class="head">
+      <span class="label muted">Partners</span>
+      <h2>Who we run with.</h2>
+      <p class="side copy">Local brands and venues that back the club and look after our members.</p>
     </div>
-    <div class="partners">
-      <div class="partner lead">
-        <span class="mono">Official partner</span>
-        <span class="pname">LSKD</span>
-        <p>We're an official LSKD Pacer Program run club, with the Castle Towers store. Members get monthly voucher giveaways and discount codes.</p>
-      </div>
-      <div class="partner">
-        <span class="mono">Home base</span>
-        <span class="pname">Good Graces</span>
-        <p>Where every Sunday run starts and finishes. Norwest.</p>
-      </div>
-      <div class="partner">
-        <span class="mono">Event partner</span>
-        <span class="pname">Pace Athletics</span>
-        <p>Hybrid Club × Pace Athletics Saturday group run.</p>
-      </div>
-      <div class="partner">
-        <span class="mono">Event partner</span>
-        <span class="pname">Yo-Chi</span>
-        <p>Hybrid Club × Yo-Chi Halloween Run, finishing at Yo-Chi Rouse Hill.</p>
-      </div>
+    <div class="plist">
+      <div class="prow"><span class="pn">LSKD</span><span class="label">Official partner · Pacer Program</span><p>Official LSKD Pacer Program run club, with the Castle Towers store. Monthly voucher giveaways and member discount codes.</p></div>
+      <div class="prow"><span class="pn">Good Graces</span><span class="label">Home base</span><p>Where every Sunday run starts and finishes, in Norwest.</p></div>
+      <div class="prow"><span class="pn">Pace Athletics</span><span class="label">Event partner</span><p>Saturday group run, 24 October.</p></div>
+      <div class="prow"><span class="pn">Yo-Chi</span><span class="label">Event partner</span><p>Halloween Run, finishing at Yo-Chi Rouse Hill.</p></div>
     </div>
   </div>
 </section>
 
-<section id="membership">
+<section id="membership" class="bone">
   <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow">Membership</span>
-        <h2>Free to<br>start.</h2>
-      </div>
-      <p class="lede">The Sunday run will always be free. A paid membership with extra perks is on the way.</p>
+    <div class="head">
+      <span class="label muted">Membership</span>
+      <h2>Free to start.</h2>
+      <p class="side copy">The Sunday run will always be free. A paid membership with extra perks is on the way.</p>
     </div>
-    <div class="tiers">
-      <div class="tier">
-        <span class="mono">Community</span>
-        <div class="tier-price">Free</div>
-        <div class="tier-sub">No commitment</div>
-        <ul>
-          <li>Sunday 7am run club</li>
-          <li>Group chat and Strava club</li>
-          <li>Access to club events</li>
-          <li>Train with people who get it</li>
-        </ul>
-        <a href="#run" class="btn">Run with us</a>
-      </div>
-      <div class="tier member">
-        <span class="mono">Club Member</span>
-        <div class="tier-price">Soon</div>
-        <div class="tier-sub">Join the list for first access</div>
-        <ul>
-          <li>Everything in Community</li>
-          <li>LSKD member discount codes</li>
-          <li>Monthly LSKD voucher giveaways</li>
-          <li>First access to capped events</li>
-        </ul>
-        <a href="#join" class="btn btn-ghost">Get first access</a>
-      </div>
+  </div>
+  <div class="tiers">
+    <div class="tier">
+      <span class="label muted">Community</span>
+      <span class="price">Free</span>
+      <span class="label muted">No commitment</span>
+      <ul>
+        <li>Sunday 7am run club</li>
+        <li>Group chat and Strava club</li>
+        <li>Access to club events</li>
+      </ul>
+      <a href="#run" class="btn ink">Run with us</a>
+    </div>
+    <div class="tier dark">
+      <span class="label muted">Club Member</span>
+      <span class="price">Soon</span>
+      <span class="label muted">Join the list for first access</span>
+      <ul>
+        <li>Everything in Community</li>
+        <li>LSKD member discount codes</li>
+        <li>Monthly LSKD voucher giveaways</li>
+        <li>First access to capped events</li>
+      </ul>
+      <a href="#join" class="btn fill">Get first access</a>
     </div>
   </div>
 </section>
 
-<section id="join" style="border-bottom:none">
-  <div class="wrap">
-    <div class="join-grid">
-      <div>
-        <span class="eyebrow">Stay in the loop</span>
-        <h2>Hear about it<br>first.</h2>
-        <p class="body-copy">Event drops sell out. Leave your email and you'll get new events and membership news before they go public.</p>
-      </div>
-      <div>
-        <form class="join-form" onsubmit="joinClub(event)">
-          <input type="email" id="email" placeholder="your@email.com" aria-label="Email address" required>
-          <button class="btn" type="submit">Send it</button>
-        </form>
-        <p class="form-note" id="formNote" aria-live="polite"></p>
-        <div class="join-alt">
-          <a href="https://www.instagram.com/hybridclubau/" class="btn btn-ghost" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.facebook.com/share/g/15ztbU8T4wv/" class="btn btn-ghost" target="_blank" rel="noopener">Facebook group</a>
-        </div>
+<section id="join">
+  <div class="wrap join">
+    <div class="join-l">
+      <span class="label muted">Stay in the loop</span>
+      <h2 style="margin-top:20px">Hear about it first.</h2>
+      <p class="copy" style="margin-top:18px">Event drops sell out. Leave your email and you'll get new events and membership news before they go public.</p>
+    </div>
+    <div class="join-r">
+      <form class="form" onsubmit="joinClub(event)">
+        <input type="email" id="email" placeholder="Email address" aria-label="Email address" required>
+        <button type="submit" class="label">Submit &rarr;</button>
+      </form>
+      <p class="form-note label" id="formNote" aria-live="polite"></p>
+      <div class="socials">
+        <a href="https://www.instagram.com/hybridclubau/" class="btn ghost" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/share/g/15ztbU8T4wv/" class="btn ghost" target="_blank" rel="noopener">Facebook group</a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">
-    <div class="foot-mark">HC</div>
-    <div class="foot-tag">Push Past Your Limits</div>
-    <div class="foot-links">
-      <a href="#run" class="mono">Sunday Run</a>
-      <a href="#events" class="mono">Events</a>
-      <a href="https://www.instagram.com/hybridclubau/" class="mono" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.facebook.com/share/g/15ztbU8T4wv/" class="mono" target="_blank" rel="noopener">Facebook</a>
+  <div class="wrap foot">
+    <div class="foot-links label muted">
+      <a href="#run">Sunday Run</a>
+      <a href="#events">Events</a>
+      <a href="https://www.instagram.com/hybridclubau/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/share/g/15ztbU8T4wv/" target="_blank" rel="noopener">Facebook</a>
     </div>
-    <p class="foot-copy mono">© 2026 Hybrid Club — Norwest, Sydney</p>
+    <div class="hc" aria-hidden="true">HC</div>
+    <div class="foot-r label muted">© 2026 Hybrid Club — Norwest, Sydney</div>
   </div>
 </footer>
 
 <script>
+  // Nav: transparent over the hero, solid after
+  (function(){
+    const nav=document.getElementById('nav'), hero=document.getElementById('top');
+    new IntersectionObserver(([e])=>nav.classList.toggle('solid',!e.isIntersecting),{rootMargin:'-60px 0px 0px 0px'}).observe(hero);
+  })();
+
   // Emails are captured via Formspree
   async function joinClub(e){
     e.preventDefault();
-    const input = document.getElementById('email');
-    const email = input.value.trim();
-    const note = document.getElementById('formNote');
-    if(!email || !email.includes('@')){ note.textContent = '— Enter a valid email.'; return; }
-    note.textContent = '— Sending...';
+    const input=document.getElementById('email'), note=document.getElementById('formNote'), email=input.value.trim();
+    if(!email || !email.includes('@')){ note.textContent='Enter a valid email.'; return; }
+    note.textContent='Sending...';
     try{
-      const res = await fetch('https://formspree.io/f/xbdnjdpe', {
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({email:email, source:'Hybrid Club website — events list'})
-      });
-      if(res.ok){ note.textContent = "— You're in. You'll hear from us first."; input.value=''; }
-      else{ note.textContent = '— Something went wrong. Try again or DM us on Instagram.'; }
-    }catch(err){ note.textContent = '— Something went wrong. Try again or DM us on Instagram.'; }
+      const res=await fetch('https://formspree.io/f/xbdnjdpe',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:email,source:'Hybrid Club website — events list'})});
+      if(res.ok){ note.textContent="You're in. You'll hear from us first."; input.value=''; }
+      else{ note.textContent='Something went wrong. Try again or DM us on Instagram.'; }
+    }catch(err){ note.textContent='Something went wrong. Try again or DM us on Instagram.'; }
   }
 
   // Events carousel
   (function(){
-    const track=document.getElementById('carousel');
-    const btns=document.querySelectorAll('.car-btn');
-    const step=()=>{const c=track.querySelector('.card');return c.getBoundingClientRect().width+16};
+    const track=document.getElementById('carousel'), btns=document.querySelectorAll('.car-btn');
+    const step=()=>track.querySelector('.card').getBoundingClientRect().width+1;
     btns.forEach(b=>b.addEventListener('click',()=>track.scrollBy({left:step()*+b.dataset.dir})));
     const sync=()=>{btns[0].disabled=track.scrollLeft<4;btns[1].disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-4};
     track.addEventListener('scroll',sync,{passive:true});window.addEventListener('resize',sync);sync();
