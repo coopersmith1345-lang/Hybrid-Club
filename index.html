@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hybrid Club — Sunday Run Club, Norwest Sydney</title>
-<meta name="description" content="A Sydney community for hybrid athletes. Free Sunday 7am run from Good Graces, Norwest. Official LSKD Pacer Program run club.">
+<meta name="description" content="A Sydney community for hybrid athletes. Free Sunday 7am run from Good Graces, Norwest, and a Saturday 11am swim at Waves Aquatic Centre. Official LSKD Pacer Program run club.">
 <meta property="og:title" content="Hybrid Club — Push Past Your Limits">
 <meta property="og:description" content="Free Sunday 7am run from Good Graces, Norwest. Every pace welcome.">
 <meta property="og:image" content="images/pace-athletics-group.jpg">
@@ -136,7 +136,11 @@
   .step:last-child{border-bottom:1px solid var(--line-d)}
   .step h3{font-weight:600;font-size:19px;letter-spacing:-.01em;margin-bottom:6px}
   .step p{color:var(--stone);font-size:15px;max-width:48ch}
-  .step a{color:var(--bone);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--stone)}
+  .step a,.spec a.addr{color:var(--bone);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--stone)}
+  .spec a.addr{text-align:right}
+  .run-photo{margin-top:40px}
+  .run-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 40%}
+  .run-photo figcaption{padding-top:12px}
 
   /* ================= FOUNDERS ================= */
   .duo{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l)}
@@ -184,7 +188,10 @@
   /* ================= PARTNERS ================= */
   .plist{border-top:1px solid var(--line-d)}
   .prow{display:grid;grid-template-columns:3fr 4fr 5fr;gap:24px;align-items:baseline;padding:26px 0;border-bottom:1px solid var(--line-d)}
-  .prow .pn{font-family:var(--mark);font-size:clamp(22px,2.6vw,34px);text-transform:uppercase;letter-spacing:.01em;line-height:1}
+  .prow{align-items:center}
+  .plogo{display:flex;align-items:center;justify-content:center;background:var(--white);height:104px;max-width:300px;padding:22px 32px}
+  .plogo img{max-width:100%;max-height:100%;object-fit:contain}
+  .plogo-lskd img{filter:invert(1)}
   .prow p{color:var(--stone);font-size:14px}
 
   /* ================= MEMBERSHIP ================= */
@@ -282,6 +289,8 @@
     <a href="#top" class="brand" aria-label="Hybrid Club home">Hybrid Club</a>
     <div class="nav-r label">
       <a href="https://www.instagram.com/hybridclubau/" target="_blank" rel="noopener" class="hide-m">Instagram</a>
+      <a href="https://www.facebook.com/share/g/1FN8AnU18S/" target="_blank" rel="noopener" class="hide-m">Facebook</a>
+      <a href="https://www.tiktok.com/@hybridclubau" target="_blank" rel="noopener" class="hide-m">TikTok</a>
       <a href="#join">Join</a>
     </div>
   </div>
@@ -312,7 +321,7 @@
   <div class="fact"><span class="label muted">Run club</span><span class="v">Every Sunday, 7am</span></div>
   <div class="fact"><span class="label muted">Home base</span><span class="v">Good Graces, Norwest</span></div>
   <div class="fact"><span class="label muted">Official partner</span><span class="v">LSKD Pacer Program</span></div>
-  <div class="fact"><span class="label muted">Launch event</span><span class="v">50 tickets, sold out</span></div>
+  <div class="fact"><span class="label muted">Swim squad</span><span class="v">Every Saturday, 11am</span></div>
 </div>
 
 <section id="about" class="light">
@@ -322,7 +331,7 @@
       <h2>Every discipline.<br>One community.</h2>
       <div class="side">
         <p class="lede">Most clubs make you pick a lane. We're for people who train across all of it.</p>
-        <p class="copy" style="margin-top:18px">A community in Sydney's Hills District for people who train seriously around full-time work and study. It starts with a weekly run. Strength, ride and swim sessions come next. The standard is showing up, not keeping up.</p>
+        <p class="copy" style="margin-top:18px">A community in Sydney's Hills District for people who train seriously around full-time work and study. It starts with a weekly run and a weekly swim. Strength and ride sessions come next. The standard is showing up, not keeping up.</p>
       </div>
     </div>
   </div>
@@ -333,19 +342,19 @@
       <p>Sunday 7am from Good Graces, Norwest. 5km at your pace. Nobody gets dropped.</p>
     </div>
     <div class="tile">
-      <div class="tile-top label"><span>02</span><span class="muted">Coming</span></div>
+      <div class="tile-top label"><span>02</span><span class="on">Weekly</span></div>
+      <h3>Swim</h3>
+      <p>Saturday 11am at Waves Aquatic Centre. Starts this week, 7 November.</p>
+    </div>
+    <div class="tile">
+      <div class="tile-top label"><span>03</span><span class="muted">Coming</span></div>
       <h3>Lift</h3>
       <p>Strength sessions built on the compound lifts. Training that carries over.</p>
     </div>
     <div class="tile">
-      <div class="tile-top label"><span>03</span><span class="muted">Coming</span></div>
+      <div class="tile-top label"><span>04</span><span class="muted">Coming</span></div>
       <h3>Ride</h3>
       <p>Weekend group rides with regroups, for road and tri bikes.</p>
-    </div>
-    <div class="tile">
-      <div class="tile-top label"><span>04</span><span class="muted">Coming</span></div>
-      <h3>Swim &amp; Tri</h3>
-      <p>Squad swims, open water and race prep, from first triathlon to full Ironman.</p>
     </div>
   </div>
 </section>
@@ -358,10 +367,14 @@
       <p class="copy" style="margin-top:18px">Free and open to everyone. Run it, jog it or walk it. Bring a mate.</p>
       <div class="spec">
         <div><span class="label muted">When</span><span>Every Sunday, 7:00am</span></div>
-        <div><span class="label muted">Where</span><span>Good Graces, Norwest</span></div>
+        <div><span class="label muted">Where</span><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Good+Graces+40+Solent+Circuit+Norwest+NSW+2153" target="_blank" rel="noopener">Good Graces, 40 Solent Circuit, Norwest NSW 2153</a></div>
         <div><span class="label muted">Distance</span><span>5km loop</span></div>
         <div><span class="label muted">Cost</span><span>Free</span></div>
       </div>
+      <figure class="run-photo">
+        <img src="images/cooper-erica-good-graces.jpg" alt="Founders Cooper and Erica outside Good Graces, Norwest" loading="lazy">
+        <figcaption class="label muted">Cooper &amp; Erica at Good Graces. Come say hi on Sunday.</figcaption>
+      </figure>
     </div>
     <div class="run-r">
       <span class="label muted">How to join</span>
@@ -377,14 +390,14 @@
           <span class="label muted">02</span>
           <div>
             <h3>Join our Strava club</h3>
-            <p>The link is in our Instagram bio. It's also how you register for events.</p>
+            <p><a href="https://strava.app.link/8xDhOO7EM7b" target="_blank" rel="noopener">Join the Hybrid Club Strava club</a>. It's also how you register for events.</p>
           </div>
         </div>
         <div class="step">
           <span class="label muted">03</span>
           <div>
             <h3>Turn up Sunday</h3>
-            <p>Good Graces, Norwest at 7am. Say hi to Cooper or Erica and you're in.</p>
+            <p>Good Graces, 40 Solent Circuit, Norwest at 7am. Say hi to Cooper or Erica and you're in.</p>
           </div>
         </div>
       </div>
@@ -410,7 +423,7 @@
       <div class="stats">
         <div class="stat">
           <span class="label muted">Cooper · Ironman Australia</span>
-          <strong>Sub 11:30</strong>
+          <strong>11:07:12</strong>
           <span class="label">Full Ironman, Port Macquarie</span>
         </div>
         <div class="stat">
@@ -429,7 +442,7 @@
         <div class="cap label"><span>Ironman Australia</span><span class="muted">Port Macquarie</span></div>
         <h3>Cooper Smith</h3>
         <div class="rows">
-          <div><span class="label muted">Latest</span><span>Ironman Australia, Port Macquarie: sub 11:30</span></div>
+          <div><span class="label muted">Latest</span><span>Ironman Australia, Port Macquarie: 11:07:12</span></div>
           <div><span class="label muted">Also</span><span>Ironman 70.3 Western Sydney: 4:51</span></div>
           <div><span class="label muted">Day job</span><span>Asset Finance Broker</span></div>
           <div><span class="label muted">Trains</span><span>Triathlon · Strength · Hybrid</span></div>
@@ -458,7 +471,7 @@
       <span class="label muted">Events</span>
       <h2>What we've run so far.</h2>
       <div class="side">
-        <p class="copy">We started with a waitlist. Our first event sold out all 50 tickets, and we've been running ever since.</p>
+        <p class="copy">We started with a waitlist and we've been running ever since. Every run now ends with Yo-Chi vouchers up for grabs.</p>
         <div class="car-ctrl">
           <button class="car-btn" data-dir="-1" aria-label="Previous event">&larr;</button>
           <button class="car-btn" data-dir="1" aria-label="Next event">&rarr;</button>
@@ -470,14 +483,21 @@
   <div class="carousel" id="carousel" tabindex="0" aria-label="Hybrid Club events">
     <article class="card">
       <div class="card-media card-type">
-        <span class="pill label">Up next</span>
-        <span class="big">31.10</span>
-        <span class="sub label">Sat 7pm · 5.4km · Costumes on</span>
+        <span class="pill label">New · Weekly</span>
+        <span class="big">07.11</span>
+        <span class="sub label">Every Sat 11am · Waves Aquatic Centre</span>
       </div>
+      <div class="card-info">
+        <div class="r1"><h3>Saturday Swim</h3><span class="date">From 7 Nov</span></div>
+        <p class="with">Hybrid Club Swim Squad</p>
+        <p class="note">Our new weekly swim, every Saturday at 11am. All levels welcome.</p>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-media"><img src="images/halloween-run.jpg" alt="Hybrid Club members in costume at the Halloween Run" loading="lazy"></div>
       <div class="card-info">
         <div class="r1"><h3>Halloween Run</h3><span class="date">31 Oct</span></div>
         <p class="with">Hybrid Club × Yo-Chi</p>
-        <p class="note">Balmoral Rd Reserve to Yo-Chi Rouse Hill. Register via our Strava club.</p>
       </div>
     </article>
     <article class="card">
@@ -495,11 +515,7 @@
       </div>
     </article>
     <article class="card">
-      <div class="card-media card-type">
-        <span class="pill label">Sold out</span>
-        <span class="big">50/50</span>
-        <span class="sub label">Tickets · extra release added</span>
-      </div>
+      <div class="card-media"><img src="images/launch-group.jpg" alt="The Hybrid Club launch event group outside Good Graces, Norwest" loading="lazy"></div>
       <div class="card-info">
         <div class="r1"><h3>Launch Event</h3><span class="date">Sept</span></div>
         <p class="with">Hybrid Club × Good Graces</p>
@@ -516,10 +532,10 @@
       <p class="side copy">Local brands and venues that back the club and look after our members.</p>
     </div>
     <div class="plist">
-      <div class="prow"><span class="pn">LSKD</span><span class="label">Official partner · Pacer Program</span><p>Official LSKD Pacer Program run club, with the Castle Towers store. Monthly voucher giveaways and member discount codes.</p></div>
-      <div class="prow"><span class="pn">Good Graces</span><span class="label">Home base</span><p>Where every Sunday run starts and finishes, in Norwest.</p></div>
-      <div class="prow"><span class="pn">Pace Athletics</span><span class="label">Event partner</span><p>Saturday group run, 24 October.</p></div>
-      <div class="prow"><span class="pn">Yo-Chi</span><span class="label">Event partner</span><p>Halloween Run, finishing at Yo-Chi Rouse Hill.</p></div>
+      <div class="prow"><span class="plogo plogo-lskd"><img src="images/logo-lskd.webp" alt="LSKD"></span><span class="label">Official partner · Pacer Program</span><p>Official LSKD Pacer Program run club, with the Castle Towers store. Monthly voucher giveaways and member discount codes.</p></div>
+      <div class="prow"><span class="plogo"><img src="images/logo-yochi.png" alt="Yo-Chi"></span><span class="label">Event partner · Every run</span><p>Our new event partner. Yo-Chi vouchers to give away at every run.</p></div>
+      <div class="prow"><span class="plogo"><img src="images/logo-good-graces.jpg" alt="Good Graces"></span><span class="label">Home base</span><p>Where every Sunday run starts and finishes, at 40 Solent Circuit, Norwest.</p></div>
+      <div class="prow"><span class="plogo"><img src="images/logo-pace-athletic.webp" alt="Pace Athletic"></span><span class="label">Event partner</span><p>Saturday group run, 24 October.</p></div>
     </div>
   </div>
 </section>
@@ -539,6 +555,8 @@
       <span class="label muted">No commitment</span>
       <ul>
         <li>Sunday 7am run club</li>
+        <li>Saturday 11am swim squad</li>
+        <li>Yo-Chi vouchers up for grabs every run</li>
         <li>Group chat and Strava club</li>
         <li>Access to club events</li>
       </ul>
@@ -574,7 +592,9 @@
       <p class="form-note label" id="formNote" aria-live="polite"></p>
       <div class="socials">
         <a href="https://www.instagram.com/hybridclubau/" class="btn ghost" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.facebook.com/share/g/15ztbU8T4wv/" class="btn ghost" target="_blank" rel="noopener">Facebook group</a>
+        <a href="https://www.facebook.com/share/g/1FN8AnU18S/" class="btn ghost" target="_blank" rel="noopener">Facebook group</a>
+        <a href="https://www.tiktok.com/@hybridclubau" class="btn ghost" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://strava.app.link/8xDhOO7EM7b" class="btn ghost" target="_blank" rel="noopener">Strava club</a>
       </div>
     </div>
   </div>
@@ -586,7 +606,9 @@
       <a href="#run">Sunday Run</a>
       <a href="#events">Events</a>
       <a href="https://www.instagram.com/hybridclubau/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.facebook.com/share/g/15ztbU8T4wv/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.facebook.com/share/g/1FN8AnU18S/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.tiktok.com/@hybridclubau" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://strava.app.link/8xDhOO7EM7b" target="_blank" rel="noopener">Strava</a>
     </div>
     <div class="hc" aria-hidden="true">HC</div>
     <div class="foot-r label muted">© 2026 Hybrid Club — Norwest, Sydney</div>
