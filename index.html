@@ -622,15 +622,18 @@
     new IntersectionObserver(([e])=>nav.classList.toggle('solid',!e.isIntersecting),{rootMargin:'-60px 0px 0px 0px'}).observe(hero);
   })();
 
-  // Emails are captured via Formspree
+  // Emails go straight to the Hybrid Club list in Kit (form 10141033)
   async function joinClub(e){
     e.preventDefault();
     const input=document.getElementById('email'), note=document.getElementById('formNote'), email=input.value.trim();
     if(!email || !email.includes('@')){ note.textContent='Enter a valid email.'; return; }
     note.textContent='Sending...';
     try{
-      const res=await fetch('https://formspree.io/f/xbdnjdpe',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:email,source:'Hybrid Club website — events list'})});
-      if(res.ok){ note.textContent="You're in. You'll hear from us first."; input.value=''; }
+      const body=new FormData(); body.append('email_address',email);
+      const res=await fetch('https://app.kit.com/forms/10141033/subscriptions',{method:'POST',headers:{'Accept':'application/json'},body});
+      const data=await res.json().catch(()=>({}));
+      if(res.ok && data.status==='success'){ note.textContent="You're in. Check your inbox to confirm."; input.value=''; }
+      else if(data.status==='failed'){ note.textContent='That email doesn\'t look right. Try again.'; }
       else{ note.textContent='Something went wrong. Try again or DM us on Instagram.'; }
     }catch(err){ note.textContent='Something went wrong. Try again or DM us on Instagram.'; }
   }
