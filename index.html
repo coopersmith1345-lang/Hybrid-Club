@@ -192,6 +192,11 @@
   .plogo{display:flex;align-items:center;justify-content:flex-start;height:64px;max-width:240px}
   .plogo img{width:auto;max-width:100%;object-fit:contain;object-position:left center}
   .prow p{color:var(--stone);font-size:14px}
+  .offer{margin-top:18px;padding-top:18px;border-top:1px solid var(--line-d);display:flex;flex-direction:column;gap:12px}
+  .offer-row{display:flex;gap:10px;flex-wrap:wrap}
+  .code{display:inline-flex;align-items:center;gap:14px;background:transparent;color:var(--bone);border:1px dashed var(--stone);padding:12px 16px;font:700 14px var(--sans);letter-spacing:.06em;cursor:pointer;transition:border-color .2s var(--ease),background .2s var(--ease)}
+  .code:hover{border-color:var(--bone);background:var(--ink-2)}
+  .code-hint{color:var(--stone);font-weight:500}
 
   /* ================= MEMBERSHIP ================= */
   .tiers{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-l);border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l)}
@@ -531,7 +536,16 @@
       <p class="side copy">Local brands and venues that back the club and look after our members.</p>
     </div>
     <div class="plist">
-      <div class="prow"><span class="plogo"><img src="images/logo-lskd.webp" alt="LSKD" style="height:64px"></span><span class="label">Official partner · Pacer Program</span><p>Official LSKD Pacer Program run club, with the Castle Towers store. Monthly voucher giveaways and member discount codes.</p></div>
+      <div class="prow"><span class="plogo"><img src="images/logo-lskd.webp" alt="LSKD" style="height:64px"></span><span class="label">Official partner · Pacer Program</span><div class="pdesc"><p>Official LSKD Pacer Program run club, with the Castle Towers store. Monthly voucher giveaways for members.</p>
+        <div class="offer">
+          <span class="label">15% off LSKD · in store &amp; online</span>
+          <div class="offer-row">
+            <button type="button" class="code" id="lskdCode" aria-label="Copy code HYBRIDCLUB15-RC">HYBRIDCLUB15-RC<span class="code-hint label" aria-live="polite">Copy</span></button>
+            <a class="btn fill" href="https://www.lskd.co/?ref=kgyzulpd&amp;utm_campaign=21098117&amp;utm_medium=influencer&amp;utm_source=collaborations&amp;utm_term=HYBRIDCLUB15-RC" target="_blank" rel="noopener sponsored">Shop LSKD &rarr;</a>
+          </div>
+          <span class="label muted">Shopping online? The link applies the code for you.</span>
+        </div>
+      </div></div>
       <div class="prow"><span class="plogo"><img src="images/logo-yochi.png" alt="Yo-Chi" style="height:30px"></span><span class="label">Event partner · Every run</span><p>Our new event partner. Yo-Chi vouchers to give away at every run.</p></div>
       <div class="prow"><span class="plogo"><img src="images/logo-good-graces.png" alt="Good Graces" style="height:34px"></span><span class="label">Home base</span><p>Where every Sunday run starts and finishes, at 40 Solent Circuit, Norwest.</p></div>
       <div class="prow"><span class="plogo"><img src="images/logo-pace-athletic.webp" alt="Pace Athletic" style="height:46px"></span><span class="label">Event partner</span><p>Saturday group run, 24 October.</p></div>
@@ -558,6 +572,7 @@
         <li>Yo-Chi vouchers up for grabs every run</li>
         <li>Group chat and Strava club</li>
         <li>Access to club events</li>
+        <li>15% off LSKD with code HYBRIDCLUB15-RC</li>
       </ul>
       <a href="#run" class="btn ink">Run with us</a>
     </div>
@@ -645,6 +660,16 @@
     const sync=()=>{btns[0].disabled=track.scrollLeft<4;btns[1].disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-4};
     track.addEventListener('scroll',sync,{passive:true});window.addEventListener('resize',sync);sync();
     track.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();track.scrollBy({left:step()})}if(e.key==='ArrowLeft'){e.preventDefault();track.scrollBy({left:-step()})}});
+  })();
+  // LSKD code copy
+  (function(){
+    const b=document.getElementById('lskdCode'); if(!b) return;
+    const hint=b.querySelector('.code-hint');
+    b.addEventListener('click',async()=>{
+      try{ await navigator.clipboard.writeText('HYBRIDCLUB15-RC'); hint.textContent='Copied'; }
+      catch(e){ hint.textContent='Select & copy'; }
+      setTimeout(()=>hint.textContent='Copy',2000);
+    });
   })();
 </script>
 
