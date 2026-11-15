@@ -307,30 +307,30 @@
   </div>
 </section>
 
-<section id="christmas" class="light">
+<section id="christmas" class="xmas">
   <div class="wrap">
     <div class="head">
       <span class="label muted">December · Coming soon</span>
       <h2>12 Days of Christmas.</h2>
       <div class="side">
-        <p class="copy">Twelve days of giveaways for Hybrid Club members this December, with gifts from a different brand each day. Dates and brands are dropping soon.</p>
-        <a href="#join" class="btn ink" style="margin-top:24px">Hear about it first</a>
+        <p class="copy">Twelve days of giveaways for Hybrid Club members this December. A new present each day, from a different brand. Dates and brands are dropping soon.</p>
+        <a href="#join" class="btn fill" style="margin-top:24px">Hear about it first</a>
       </div>
     </div>
-  </div>
-  <div class="days" aria-label="Twelve days of giveaways, coming soon">
-    <div class="day"><span class="label muted">Day</span><b>01</b></div>
-    <div class="day"><span class="label muted">Day</span><b>02</b></div>
-    <div class="day"><span class="label muted">Day</span><b>03</b></div>
-    <div class="day"><span class="label muted">Day</span><b>04</b></div>
-    <div class="day"><span class="label muted">Day</span><b>05</b></div>
-    <div class="day"><span class="label muted">Day</span><b>06</b></div>
-    <div class="day"><span class="label muted">Day</span><b>07</b></div>
-    <div class="day"><span class="label muted">Day</span><b>08</b></div>
-    <div class="day"><span class="label muted">Day</span><b>09</b></div>
-    <div class="day"><span class="label muted">Day</span><b>10</b></div>
-    <div class="day"><span class="label muted">Day</span><b>11</b></div>
-    <div class="day"><span class="label muted">Day</span><b>12</b></div>
+    <div class="gifts" role="img" aria-label="Twelve wrapped presents, one for each day, still to be opened">
+    <div class="gift g-red"><span class="lid"><i></i></span><b>01</b></div>
+    <div class="gift g-cream"><span class="lid"><i></i></span><b>02</b></div>
+    <div class="gift g-pine"><span class="lid"><i></i></span><b>03</b></div>
+    <div class="gift g-gold"><span class="lid"><i></i></span><b>04</b></div>
+    <div class="gift g-red"><span class="lid"><i></i></span><b>05</b></div>
+    <div class="gift g-cream"><span class="lid"><i></i></span><b>06</b></div>
+    <div class="gift g-pine"><span class="lid"><i></i></span><b>07</b></div>
+    <div class="gift g-gold"><span class="lid"><i></i></span><b>08</b></div>
+    <div class="gift g-red"><span class="lid"><i></i></span><b>09</b></div>
+    <div class="gift g-cream"><span class="lid"><i></i></span><b>10</b></div>
+    <div class="gift g-pine"><span class="lid"><i></i></span><b>11</b></div>
+    <div class="gift g-gold"><span class="lid"><i></i></span><b>12</b></div>
+    </div>
   </div>
 </section>
 
@@ -358,12 +358,12 @@
       <a href="#run" class="btn ink">Run with us</a>
     </div>
     <div class="tier dark">
-      <span class="label muted">Hybrid Premium · Coming soon</span>
+      <span class="label gold">Hybrid Premium · Coming soon</span>
       <div class="count" id="count" role="timer" aria-label="Countdown to the new year">
-        <div><b data-u="d">--</b><span class="label muted">Days</span></div>
-        <div><b data-u="h">--</b><span class="label muted">Hours</span></div>
-        <div><b data-u="m">--</b><span class="label muted">Mins</span></div>
-        <div><b data-u="s">--</b><span class="label muted">Secs</span></div>
+        <div class="ring" data-r="d"><b data-u="d">--</b><span class="label">Days</span></div>
+        <div class="ring" data-r="h"><b data-u="h">--</b><span class="label">Hours</span></div>
+        <div class="ring" data-r="m"><b data-u="m">--</b><span class="label">Mins</span></div>
+        <div class="ring" data-r="s"><b data-u="s">--</b><span class="label">Secs</span></div>
       </div>
       <span class="label muted">Monthly membership · Launching in the new year</span>
       <ul>
@@ -452,11 +452,13 @@
   // Hybrid Premium countdown to midnight, 1 January 2027, Sydney time
   (function(){
     const el=document.getElementById('count'); if(!el) return;
-    const end=new Date('2027-01-01T00:00:00+11:00').getTime(), q=u=>el.querySelector('[data-u="'+u+'"]'), p=n=>String(n).padStart(2,'0');
+    const end=new Date('2027-01-01T00:00:00+11:00').getTime(), p=n=>String(n).padStart(2,'0');
+    // each ring drains as its unit runs down (days are measured against 46, the days left at launch of this page)
+    const set=(u,v,max)=>{ el.querySelector('[data-u="'+u+'"]').textContent=p(v); el.querySelector('[data-r="'+u+'"]').style.setProperty('--p',Math.min(1,v/max)); };
     function tick(){
       let t=Math.max(0,end-Date.now())/1000;
-      q('d').textContent=p(Math.floor(t/86400)); q('h').textContent=p(Math.floor(t%86400/3600));
-      q('m').textContent=p(Math.floor(t%3600/60)); q('s').textContent=p(Math.floor(t%60));
+      set('d',Math.floor(t/86400),46); set('h',Math.floor(t%86400/3600),24);
+      set('m',Math.floor(t%3600/60),60); set('s',Math.floor(t%60),60);
     }
     tick(); setInterval(tick,1000);
   })();

@@ -225,15 +225,40 @@
   .lv .go{font-size:18px;transition:transform .2s var(--ease)}
   .lv:hover .go{transform:translateX(6px)}
 
-  /* ================= 12 DAYS ================= */
-  .days{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line-l);border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l)}
-  .day{background:var(--paper);aspect-ratio:1;padding:16px;display:flex;flex-direction:column;justify-content:space-between}
-  .day b{font-weight:900;font-size:clamp(36px,5.4vw,84px);line-height:.85;letter-spacing:-.04em}
+  /* ================= 12 DAYS (the one place the site uses Christmas colour) ================= */
+  .xmas{--pine:#0F3B2D;--pine-l:#1E5B45;--berry:#B3242B;--cream:#F3EBDD;--gold:#C9A45C;
+    background-color:var(--pine);color:var(--cream);
+    background-image:radial-gradient(circle,rgba(243,235,221,.5) 1.5px,transparent 2px),radial-gradient(circle,rgba(243,235,221,.28) 1px,transparent 1.5px);
+    background-size:140px 140px,90px 90px;background-position:20px 30px,60px 80px}
+  .xmas .muted,.xmas p.copy{color:rgba(243,235,221,.78)}
+  .xmas .btn.fill{background:var(--cream);border-color:var(--cream)}
+  .xmas .btn.fill:hover{background:transparent;color:var(--cream)}
+  .gifts{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(40px,5vw,72px) clamp(16px,2.6vw,40px);padding-top:6%}
+  .gift{position:relative;aspect-ratio:1;background:var(--box);display:grid;place-items:center;container-type:inline-size;box-shadow:0 14px 24px -14px rgba(0,0,0,.55)}
+  .gift::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:16%;transform:translateX(-50%);background:var(--rib)}
+  .gift .lid{position:absolute;z-index:2;top:0;left:-5%;right:-5%;height:24%;background:var(--box);box-shadow:0 3px 0 rgba(0,0,0,.2);transform-origin:10% 100%;transition:transform .25s var(--ease)}
+  .gift .lid i{position:absolute;top:0;bottom:0;left:50%;width:14.5%;transform:translateX(-50%);background:var(--rib)}
+  .gift .lid::before,.gift .lid::after{content:"";position:absolute;bottom:92%;width:24%;height:95%;border:3.2cqi solid var(--rib);border-radius:50%}
+  .gift .lid::before{right:50%;transform:rotate(-24deg);transform-origin:100% 100%}
+  .gift .lid::after{left:50%;transform:rotate(24deg);transform-origin:0 100%}
+  .gift b{position:relative;z-index:3;margin-top:22%;width:44cqi;aspect-ratio:1;border-radius:50%;background:var(--cream);color:#0B0B0A;display:grid;place-items:center;font-weight:900;font-size:19cqi;letter-spacing:-.04em;box-shadow:0 2px 0 rgba(0,0,0,.18)}
+  .gift:hover .lid{transform:translateY(-14%) rotate(-5deg)}
+  .g-red{--box:var(--berry);--rib:var(--cream)}
+  .g-cream{--box:var(--cream);--rib:var(--berry)}
+  .g-cream b{background:var(--berry);color:var(--cream)}
+  .g-pine{--box:var(--pine-l);--rib:var(--gold)}
+  .g-gold{--box:var(--gold);--rib:var(--berry)}
 
   /* ================= PREMIUM COUNTDOWN ================= */
-  .count{display:flex;gap:clamp(18px,2.6vw,36px);margin:28px 0 14px}
-  .count b{display:block;font-weight:900;font-size:clamp(40px,4.8vw,70px);line-height:.9;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-  .count span{display:block;margin-top:10px}
+  .gold{color:#C9A45C}
+  .count{display:grid;grid-template-columns:repeat(4,minmax(0,128px));gap:clamp(10px,1.6vw,20px);margin:28px 0 20px}
+  .ring{--p:1;position:relative;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;container-type:inline-size}
+  .ring::before{content:"";position:absolute;inset:0;border-radius:50%;
+    background:conic-gradient(#C9A45C calc(var(--p)*360deg),var(--line-d) 0);
+    -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 5px),#000 calc(100% - 4px));
+            mask:radial-gradient(farthest-side,transparent calc(100% - 5px),#000 calc(100% - 4px))}
+  .ring b{font-weight:900;font-size:34cqi;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .ring span{margin-top:5cqi;font-size:max(8px,8.5cqi);color:#C9A45C}
 
   /* ================= CHALLENGE PAGE ================= */
   .ch-hero{padding:calc(60px + clamp(48px,7vw,96px)) 0 clamp(48px,6vw,80px);border-bottom:1px solid var(--line-d)}
@@ -331,8 +356,7 @@
   }
   @media(max-width:560px){
     .carousel{grid-auto-columns:82%}
-    .days{grid-template-columns:repeat(3,1fr)}
-    .day{padding:12px}
+    .gifts{grid-template-columns:repeat(3,1fr);gap:44px 22px;padding-top:10%}
     .opts{grid-template-columns:1fr}
     .tiles{grid-template-columns:1fr}
     .tile{min-height:0}
