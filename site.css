@@ -170,6 +170,15 @@
   .card-info .with{font-size:13px;color:var(--stone-d);margin-top:2px}
   .card-info .note{font-size:13px;color:var(--stone-d);margin-top:10px}
 
+  .slides{position:relative}
+  .slides img{position:absolute;inset:0;opacity:0;transition:opacity .5s var(--ease),transform .6s var(--ease)}
+  .slides img.on{opacity:1}
+  .slide-next{position:absolute;inset:0;z-index:2;background:transparent;border:none;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding-bottom:14px}
+  .slide-next:focus-visible{outline:2px solid var(--white);outline-offset:-4px}
+  .dots{display:flex;gap:6px;padding:7px 9px;background:rgba(11,11,10,.55)}
+  .dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45)}
+  .dots i.on{background:var(--white)}
+
   /* ================= PARTNERS ================= */
   .plist{border-top:1px solid var(--line-d)}
   .prow{display:grid;grid-template-columns:3fr 4fr 5fr;gap:24px;align-items:baseline;padding:26px 0;border-bottom:1px solid var(--line-d)}
