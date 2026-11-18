@@ -376,3 +376,18 @@
     .tier .btn{align-self:stretch}
     .rows div{grid-template-columns:96px 1fr}
   }
+
+  /* ================= UPCOMING EVENTS ================= */
+  .up-list{border-top:1px solid var(--line-d)}
+  .up{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:center;padding:28px 0;border-bottom:1px solid var(--line-d)}
+  .up-date{grid-column:1 / 4;display:flex;flex-direction:column;gap:6px}
+  .up-dm{font-weight:700;font-size:clamp(22px,2.2vw,28px);text-transform:uppercase;letter-spacing:-.015em;line-height:1}
+  .up-main{grid-column:4 / 10;display:flex;flex-direction:column;gap:8px}
+  .up-main h3{font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:-.01em}
+  .up .btn{grid-column:10 / 13;justify-self:end}
+  .up-empty{padding:28px 0}
+  @media (max-width:900px){
+    .up{grid-template-columns:1fr;gap:12px}
+    .up-date,.up-main,.up .btn{grid-column:1 / -1;justify-self:start}
+    .up-date{flex-direction:row;align-items:baseline;gap:10px}
+  }

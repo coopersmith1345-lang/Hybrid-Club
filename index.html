@@ -22,7 +22,7 @@
       <a href="challenge.html">Challenge</a>
       <a href="#run">Sunday Run</a>
       <a href="#founders">Founders</a>
-      <a href="#events">Events</a>
+      <a href="#upcoming">Events</a>
       <a href="#partners">Partners</a>
       <a href="#feedback">Feedback</a>
     </div>
@@ -220,6 +220,21 @@
         </div>
         <p class="bio">I'm from the Hills in Sydney. I've found my love of fitness over the years, whether that's running, lifting weights or attempting a crazy Pilates move. <em>As a nurse I know first-hand how important a healthy life is</em>, from two litres of water a day to eight hours of sleep. I hope Hybrid Club is a place where we share that journey and help each other along the way.</p>
       </article>
+    </div>
+  </div>
+</section>
+
+<section id="upcoming">
+  <div class="wrap">
+    <div class="head">
+      <span class="label muted">Coming up</span>
+      <h2>Upcoming events.</h2>
+      <div class="side">
+        <p class="copy">Free and open to everyone. Every pace welcome, just turn up.</p>
+      </div>
+    </div>
+    <div class="up-list" id="upList" aria-live="polite">
+      <p class="up-empty label muted">Loading events&hellip;</p>
     </div>
   </div>
 </section>
@@ -438,6 +453,46 @@
   (function(){
     const nav=document.getElementById('nav'), hero=document.getElementById('top');
     new IntersectionObserver(([e])=>nav.classList.toggle('solid',!e.isIntersecting),{rootMargin:'-60px 0px 0px 0px'}).observe(hero);
+  })();
+
+
+  // Upcoming events: read from the "Hybrid Club – Website Events" Google Sheet.
+  // Add, edit or delete rows in the Sheet and the site updates. Past dates drop off automatically.
+  (function(){
+    const SHEET='1XrK0IdPKzYk15ZpCAH0NsFSTAfC6nq1MfkOr7_VG2kM';
+    const URL='https://docs.google.com/spreadsheets/d/'+SHEET+'/gviz/tq?tqx=out:csv&sheet=Events';
+    const FALLBACK_LINK='https://www.instagram.com/hybridclubau/';
+    const list=document.getElementById('upList');
+    const esc=t=>String(t||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const empty=msg=>{list.innerHTML='<p class="up-empty copy">'+msg+'</p>';};
+    function csv(text){
+      const rows=[];let row=[],f='',q=false;
+      for(let i=0;i<text.length;i++){const c=text[i];
+        if(q){if(c=='"'){if(text[i+1]=='"'){f+='"';i++;}else q=false;}else f+=c;}
+        else if(c=='"')q=true; else if(c==','){row.push(f);f='';}
+        else if(c=='\n'){row.push(f);rows.push(row);row=[];f='';} else if(c!='\r')f+=c;}
+      if(f||row.length){row.push(f);rows.push(row);} return rows;
+    }
+    function parseDate(v){
+      v=(v||'').trim(); let m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+      if(m){let y=+m[3]; if(y<100)y+=2000; return new Date(y,m[2]-1,+m[1]);}
+      m=v.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/); if(m)return new Date(+m[1],m[2]-1,+m[3]);
+      const d=new Date(v); return isNaN(d)?null:new Date(d.getFullYear(),d.getMonth(),d.getDate());
+    }
+    fetch(URL).then(r=>{if(!r.ok)throw 0;return r.text();}).then(t=>{
+      const today=new Date(); today.setHours(0,0,0,0);
+      const ev=csv(t).slice(1).map(r=>({d:parseDate(r[0]),time:r[1],name:r[2],loc:r[3],info:r[4],link:(r[5]||'').trim(),btn:(r[6]||'').trim()}))
+        .filter(e=>e.d&&e.name&&e.d>=today).sort((a,b)=>a.d-b.d);
+      if(!ev.length){empty('Next event announced soon. Follow <a href="'+FALLBACK_LINK+'" target="_blank" rel="noopener"><u>@hybridclubau</u></a> so you don\'t miss it.');return;}
+      list.innerHTML=ev.map(e=>{
+        const day=e.d.toLocaleDateString('en-AU',{weekday:'short'}), dm=e.d.toLocaleDateString('en-AU',{day:'numeric',month:'short'});
+        const link=e.link||FALLBACK_LINK, btn=e.btn||(e.link?'RSVP':'Join us');
+        return '<article class="up"><div class="up-date"><span class="label muted">'+esc(day)+'</span><span class="up-dm">'+esc(dm)+'</span></div>'+
+          '<div class="up-main"><h3>'+esc(e.name)+'</h3><p class="label muted">'+[e.time,e.loc].filter(Boolean).map(esc).join(' &middot; ')+'</p>'+
+          (e.info?'<p class="copy">'+esc(e.info)+'</p>':'')+'</div>'+
+          '<a class="btn ghost" href="'+esc(link)+'" target="_blank" rel="noopener">'+esc(btn)+' &rarr;</a></article>';
+      }).join('');
+    }).catch(()=>empty('Follow <a href="'+FALLBACK_LINK+'" target="_blank" rel="noopener"><u>@hybridclubau</u></a> for upcoming runs and events.'));
   })();
 
   // Emails go straight to the Hybrid Club list in Kit (form 10141033)
