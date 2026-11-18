@@ -481,7 +481,8 @@
     }
     fetch(URL).then(r=>{if(!r.ok)throw 0;return r.text();}).then(t=>{
       const today=new Date(); today.setHours(0,0,0,0);
-      const ev=csv(t).slice(1).map(r=>({d:parseDate(r[0]),time:r[1],name:r[2],loc:r[3],info:r[4],link:(r[5]||'').trim(),btn:(r[6]||'').trim()}))
+      const tm=v=>{v=(v||'').trim();const m=v.match(/^(\d{1,2}):(\d{2})(?::\d{2})?$/);if(!m)return v;let h=+m[1];const ap=h>=12?'pm':'am';h=h%12||12;return h+(m[2]=='00'?'':':'+m[2])+ap;};
+      const ev=csv(t).slice(1).map(r=>({d:parseDate(r[0]),time:tm(r[1]),name:r[2],loc:r[3],info:r[4],link:(r[5]||'').trim(),btn:(r[6]||'').trim()}))
         .filter(e=>e.d&&e.name&&e.d>=today).sort((a,b)=>a.d-b.d);
       if(!ev.length){empty('Next event announced soon. Follow <a href="'+FALLBACK_LINK+'" target="_blank" rel="noopener"><u>@hybridclubau</u></a> so you don\'t miss it.');return;}
       list.innerHTML=ev.map(e=>{
